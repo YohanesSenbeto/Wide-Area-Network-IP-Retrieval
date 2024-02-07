@@ -13,7 +13,7 @@ function Footer(props) {
                   <div className="icon">
                     <span className="flaticon-pin"></span>
                   </div>
-                  <div className="text">54B, Tailstoi Town 5238 MT, <br /> La city, IA 522364</div>
+                  <div className="text">Ethiopia, Addis Ababa, <br /> Saris, Adey Abeba</div>
                 </div>
               </div>
             </div>
@@ -24,7 +24,7 @@ function Footer(props) {
                     <span className="flaticon-email"></span>
                   </div>
                   <div className="text">Email us : <br /> <a
-                    href="mailto:contact.contact@autorex.com">contact@autorex.com</a></div>
+                    href="mailto:contact.contact@elianatech.com">elianatech@gmail.com</a></div>
                 </div>
               </div>
             </div>
@@ -34,7 +34,7 @@ function Footer(props) {
                   <div className="icon">
                     <span className="flaticon-phone"></span>
                   </div>
-                  <div className="text">Call us on : <br /><strong>+ 1800 456 7890</strong></div>
+                  <div className="text">Call us on : <br /><strong>+ 2519 17035669 </strong></div>
                 </div>
               </div>
             </div>
@@ -48,8 +48,10 @@ function Footer(props) {
             <div className="row clearfix">
               <div className="footer-column col-lg-4">
                 <div className="widget widget_about">
-                  <div className="text">Capitalize on low hanging fruit to identify a ballpark value added
-                    activity to beta test. Override the digital divide additional clickthroughs.
+                  <div className="text">Welcome to WAN IP Lookup, your go-to destination for retrieving accurate and dependable WAN IP addresses. 
+                  Designed specifically for network users in Ethiopia, our platform offers a simple yet powerful tool to effortlessly obtain your WAN IP address. 
+                  Whether you're a business owner, a student, or a tech enthusiast, our service ensures reliable access to the information you need to manage your network effectively.
+                   Say goodbye to uncertainty and hello to seamless connectivity with WAN IP Lookup.
                   </div>
                 </div>
               </div>
@@ -74,11 +76,10 @@ function Footer(props) {
                       <h4 className="widget_title">Our Services</h4>
                       <div className="widget-content">
                         <ul className="list">
-                          <li><a href="#">Performance Upgrade</a></li>
-                          <li><a href="#">Transmission Service</a></li>
-                          <li><a href="#">Break Repair & Service</a></li>
-                          <li><a href="#">Engine Service & Repair</a></li>
-                          <li><a href="#">Trye & Wheels</a></li>
+                          <li><a href="#">WI-FI Router Configuration</a></li>
+                          <li><a href="#">Network Cable Installation</a></li>
+                          <li><a href="#">Website Development</a></li>
+                          <li><a href="#">Computer Maintenance</a></li>
                         </ul>
                       </div>
                     </div>
@@ -105,7 +106,7 @@ function Footer(props) {
       </div>
       <div className="auto-container">
         <div className="footer-bottom">
-          <div className="copyright-text">© Copyright <a href="#">Abe Garage</a> 2023 . All right reserved.</div>
+          <div className="copyright-text">© Copyright <a href="#">WAN IP</a> 2024 . All right reserved.</div>
         </div>
       </div>
     </footer>
