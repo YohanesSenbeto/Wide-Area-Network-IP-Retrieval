@@ -4,6 +4,7 @@ import React from "react";
 import { Routes, Route } from "react-router";
 // Import the page components
 import Home from "./markup/pages/Home";
+import Wanip from "./markup/pages/Wanip";
 import Login from "./markup/pages/Login";
 import AddEmployee from "./markup/pages/admin/AddEmployee";
 import Unauthorized from "./markup/pages/Unauthorized";
@@ -38,6 +39,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/Wanip" element={<Wanip />} />
 <Route path="/Register" element={<SignupForm />} />        
         <Route path="/about" element={<About />} />
         <Route path="/login" element={<Login />} />
