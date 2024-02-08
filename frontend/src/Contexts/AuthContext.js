@@ -12,23 +12,23 @@ export const useAuth = () => {
 export const AuthProvider = ({ children }) => {
   const [isLogged, setIsLogged] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
-  const [employee, setEmployee] = useState(null);
+  const [user, setuser] = useState(null);
 
-  const value = { isLogged, isAdmin, setIsAdmin, setIsLogged, employee };
+  const value = { isLogged, isAdmin, setIsAdmin, setIsLogged, user };
 
   useEffect(() => {
     // Retrieve the logged in user from local storage
-    const loggedInEmployee = getAuth();
-    // console.log(loggedInEmployee);
-    loggedInEmployee.then((response) => {
+    const loggedInuser = getAuth();
+    // console.log(loggedInE);
+    loggedInuser.then((response) => {
       // console.log(response);
-      if (response.employee_token) {
+      if (response.user_token) {
         setIsLogged(true);
-        // 3 is the employee_role for admin
-        if (response.employee_role === 3) {
+        // 3 is the user_role for admin
+        if (response.user_role === 3) {
           setIsAdmin(true);
         }
-        setEmployee(response);
+        setuser(response);
       }
     });
   }, []);

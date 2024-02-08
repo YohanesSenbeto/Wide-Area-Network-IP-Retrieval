@@ -12,10 +12,10 @@ const PrivateAuthRoute = ({ roles, children }) => {
 
   useEffect(() => {
     // Retrieve the logged in user from local storage
-    const loggedInEmployee = getAuth();
-    // console.log(loggedInEmployee);
-    loggedInEmployee.then((response) => {
-      if (response.employee_token) {
+    const loggedInuser = getAuth();
+    // console.log(loggedInuser);
+    loggedInuser.then((response) => {
+      if (response.user_token) {
         // If in here, that means the user is logged in 
         // console.log(response);
         // console.log("Set logged in to true");

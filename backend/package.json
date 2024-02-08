@@ -1,12 +1,12 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "description": "Abe Garage",
+  "description": "wanip",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Hamerochu",
+  "author": "wanip",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.0",

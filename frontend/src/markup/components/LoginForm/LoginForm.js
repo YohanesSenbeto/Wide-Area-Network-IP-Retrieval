@@ -5,8 +5,8 @@ import loginService from '../../../services/login.service';
 function LoginForm() {
   const navigate = useNavigate();
   const location = useLocation();
-  const [employee_email, setEmail] = useState('');
-  const [employee_password, setPassword] = useState('');
+  const [user_email, setEmail] = useState('');
+  const [user_password, setPassword] = useState('');
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const [serverError, setServerError] = useState('');
@@ -16,14 +16,14 @@ function LoginForm() {
     // Handle client side validations here 
     let valid = true; // Flag 
     // Email validation
-    if (!employee_email) {
+    if (!user_email) {
       setEmailError('Please enter your email address first');
       valid = false;
-    } else if (!employee_email.includes('@')) {
+    } else if (!user_email.includes('@')) {
       setEmailError('Invalid email format');
     } else {
       const regex = /^\S+@\S+\.\S+$/;
-      if (!regex.test(employee_email)) {
+      if (!regex.test(user_email)) {
         setEmailError('Invalid email format');
         valid = false;
       } else {
@@ -31,7 +31,7 @@ function LoginForm() {
       }
     }
     // Password has to be at least 6 characters long
-    if (!employee_password || employee_password.length < 6) {
+    if (!user_password || user_password.length < 6) {
       setPasswordError('Password must be at least 6 characters long');
       valid = false;
     } else {
@@ -42,21 +42,21 @@ function LoginForm() {
     }
     // Handle form submission here
     const formData = {
-      employee_email,
-      employee_password
+      user_email,
+      user_password
     };
     console.log(formData);
     // Call the service
-    const loginEmployee = loginService.logIn(formData);
-    console.log(loginEmployee);
-    loginEmployee.then((response) => response.json())
+    const loginuser = loginService.logIn(formData);
+    console.log(loginuser);
+    loginuser.then((response) => response.json())
       .then((response) => {
         console.log(response);
         if (response.status === 'success') {
           // Save the user in the local storage
-          if (response.data.employee_token) {
+          if (response.data.user_token) {
             console.log(response.data);
-            localStorage.setItem("employee", JSON.stringify(response.data));
+            localStorage.setItem("user", JSON.stringify(response.data));
           }
           // Redirect the user to the dashboard
           // navigate('/admin');
@@ -96,12 +96,12 @@ function LoginForm() {
 
                     <div className="form-group col-md-12">
                       {serverError && <div className="validation-error" role="alert">{serverError}</div>}
-                      <input type="email" name="employee_email" value={employee_email} onChange={(event) => setEmail(event.target.value)} placeholder="Email" />
+                      <input type="email" name="user_email" value={user_email} onChange={(event) => setEmail(event.target.value)} placeholder="Email" />
                       {emailError && <div className="validation-error" role="alert">{emailError}</div>}
                     </div>
 
                     <div className="form-group col-md-12">
-                      <input type="password" name="employee_password" value={employee_password} onChange={(event) => setPassword(event.target.value)} placeholder="Password" />
+                      <input type="password" name="user_password" value={user_password} onChange={(event) => setPassword(event.target.value)} placeholder="Password" />
                       {passwordError && <div className="validation-error" role="alert">{passwordError}</div>}
                     </div>
 

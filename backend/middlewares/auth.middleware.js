@@ -4,7 +4,6 @@ require('dotenv').config();
 const jwt = require("jsonwebtoken");
 // A function to verify the token received from the frontend 
 // Import the employee service 
-const employeeService = require("../services/employee.service");
 
 // A function to verify the token received from the frontend 
 const verifyToken = async (req, res, next) => {
@@ -25,7 +24,6 @@ const verifyToken = async (req, res, next) => {
     }
     // console.log("Here is the decoded token");
     // console.log(decoded);
-    req.employee_email = decoded.employee_email;
     next();
   });
 }
@@ -33,10 +31,10 @@ const verifyToken = async (req, res, next) => {
 // A function to check if the user is an admin
 const isAdmin = async (req, res, next) => {
   // let token = req.headers["x-access-token"];
-  console.log(req.employee_email);
-  const employee_email = req.employee_email;
-  const employee = await employeeService.getEmployeeByEmail(employee_email);
-  if (employee[0].company_role_id === 3) {
+  console.log(req.user_email);
+  const user_email = req.user_email;
+  const user = await userService.getuserByEmail(user_email);
+  if (user[0].user_role_id === 3) {
     next();
   } else {
     return res.status(403).send({

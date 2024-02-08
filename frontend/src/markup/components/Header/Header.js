@@ -46,7 +46,7 @@ function Header(props) {
                 ) : (
                   <div className="phone-number">
                     For more support call us on :{" "}
-                    <strong>+251911151511 </strong>{" "}
+                    <strong>+251917035669 </strong>{" "}
                   </div>
                 )}
               </div>
