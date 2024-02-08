@@ -1,11 +1,13 @@
-import React from 'react';
+import React from "react";
 //import Wanip from './Wanip.js'
+import './Home.css'
+import banner from "../../assets/images/banner.png";
 
 function Home(props) {
   return (
-    <div>
-      <h1>Home</h1>
-          </div>
+    
+      <img className="homebanner" src={banner} alt="banner"></img>
+    
   );
 }
 
