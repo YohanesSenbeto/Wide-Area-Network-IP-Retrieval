@@ -1,17 +1,20 @@
 import React, { useState } from "react";
+import "./signup.css"
 import { useNavigate, useLocation } from "react-router-dom";
 import signupService from "../../../services/signup.service";
 
 function SignupForm() {
   const navigate = useNavigate();
   const location = useLocation();
-  const [user_name, setName] = useState("");
+  const [first_name, setFirstName] = useState("");
+  const [last_name, setLastName] = useState("");
   const [user_email, setEmail] = useState("");
   const [user_password, setPassword] = useState("");
   const [user_city, setCity] = useState("");
   const [user_subcity, setSubcity] = useState("");
   const [user_phone, setPhone] = useState("");
-  const [nameError, setNameError] = useState("");
+  const [firstNameError, setFirstNameError] = useState("");
+  const [lastNameError, setLastNameError] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [serverError, setServerError] = useState("");
@@ -22,12 +25,20 @@ function SignupForm() {
     // Handle client-side validations here
     let valid = true; // Flag
 
-    // Name validation
-    if (!user_name) {
-      setNameError("Please enter your name");
+    // First name validation
+    if (!first_name) {
+      setFirstNameError("Please enter your first name");
       valid = false;
     } else {
-      setNameError("");
+      setFirstNameError("");
+    }
+
+    // Last name validation
+    if (!last_name) {
+      setLastNameError("Please enter your last name");
+      valid = false;
+    } else {
+      setLastNameError("");
     }
 
     // Email validation
@@ -58,7 +69,8 @@ function SignupForm() {
     // Handle form submission here
     if (valid) {
       const formData = {
-        user_name,
+        first_name,
+        last_name,
         user_email,
         user_password,
         user_city,
@@ -108,7 +120,7 @@ function SignupForm() {
               <div className="contact-form">
                 <form onSubmit={handleSubmit}>
                   <div className="row clearfix">
-                    <div className="form-group col-md-12">
+                    <div className="form-group col-md-6">
                       {serverError && (
                         <div className="validation-error" role="alert">
                           {serverError}
@@ -116,19 +128,37 @@ function SignupForm() {
                       )}
                       <input
                         type="text"
-                        name="user_name"
-                        value={user_name}
-                        onChange={(event) => setName(event.target.value)}
-                        placeholder="User Name"
+                        name="first_name"
+                        value={first_name}
+                        onChange={(event) => setFirstName(event.target.value)}
+                        placeholder="First Name"
                       />
-                      {nameError && (
+                      {firstNameError && (
                         <div className="validation-error" role="alert">
-                          {nameError}
+                          {firstNameError}
                         </div>
                       )}
                     </div>
-
-                    <div className="form-group col-md-12">
+                    <div className="form-group col-md-6">
+                      {serverError && (
+                        <div className="validation-error" role="alert">
+                          {serverError}
+                        </div>
+                      )}
+                      <input
+                        type="text"
+                        name="last_name"
+                        value={last_name}
+                        onChange={(event) => setLastName(event.target.value)}
+                        placeholder="Last Name"
+                      />
+                      {lastNameError && (
+                        <div className="validation-error" role="alert">
+                          {lastNameError}
+                        </div>
+                      )}
+                    </div>
+                    <div className=" form-group col-md-12">
                       {serverError && (
                         <div className="validation-error" role="alert">
                           {serverError}
