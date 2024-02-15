@@ -34,7 +34,7 @@ function Footer(props) {
                   <div className="icon">
                     <span className="flaticon-phone"></span>
                   </div>
-                  <div className="text">Call us on : <br /> <strong>+ 251 917035669</strong></div>
+                  <div className="text">Call us on : <br /><strong>+ 251 917035669</strong></div>
                 </div>
               </div>
             </div>
