@@ -13,7 +13,7 @@ function Footer(props) {
                   <div className="icon">
                     <span className="flaticon-pin"></span>
                   </div>
-                  <div className="text">54B, Tailstoi Town 5238 MT, <br /> La city, IA 522364</div>
+                  <div className="text">Ethiopia<br /> Addis Ababa</div>
                 </div>
               </div>
             </div>
@@ -24,7 +24,7 @@ function Footer(props) {
                     <span className="flaticon-email"></span>
                   </div>
                   <div className="text">Email us : <br /> <a
-                    href="mailto:contact.contact@autorex.com">contact@autorex.com</a></div>
+                    href="mailto:elianatech@gmail.com">elianatech@gmail.com</a></div>
                 </div>
               </div>
             </div>
@@ -34,7 +34,7 @@ function Footer(props) {
                   <div className="icon">
                     <span className="flaticon-phone"></span>
                   </div>
-                  <div className="text">Call us on : <br /><strong>+ 1800 456 7890</strong></div>
+                  <div className="text">Call us on : <br /><strong>+ 251 917035669/strong></div>
                 </div>
               </div>
             </div>
@@ -48,8 +48,7 @@ function Footer(props) {
             <div className="row clearfix">
               <div className="footer-column col-lg-4">
                 <div className="widget widget_about">
-                  <div className="text">Capitalize on low hanging fruit to identify a ballpark value added
-                    activity to beta test. Override the digital divide additional clickthroughs.
+                  <div className="text">The Ethio-WAN-IP retrieve  Website for Ethiopia will primarily focus on providing WAN IP address information specific to the country. It will cover subnetting, default gateway details, geolocation data, ISP identification, and troubleshooting guides related to WAN IP networking within the Ethiopian context.
                   </div>
                 </div>
               </div>
@@ -74,11 +73,11 @@ function Footer(props) {
                       <h4 className="widget_title">Our Services</h4>
                       <div className="widget-content">
                         <ul className="list">
-                          <li><a href="#">Performance Upgrade</a></li>
-                          <li><a href="#">Transmission Service</a></li>
-                          <li><a href="#">Break Repair & Service</a></li>
-                          <li><a href="#">Engine Service & Repair</a></li>
-                          <li><a href="#">Trye & Wheels</a></li>
+                          <li><a href="#">Website Development for small and Large Business Company</a></li>
+                          <li><a href="#">Computer Maintenance</a></li>
+                          <li><a href="#">Mobile Repair</a></li>
+                          <li><a href="#">Studying Programming Languanges</a></li>
+                          <li><a href="#">Network Cable Installation for Building</a></li>
                         </ul>
                       </div>
                     </div>
@@ -93,7 +92,7 @@ function Footer(props) {
                   </div>
                   <ul className="social-links">
                     <li><a href="#"><span className="fab fa-facebook-f"></span></a></li>
-                    <li><a href="#"><span className="fab fa-linkedin-in"></span></a></li>
+                    <li><a href="https://www.linkedin.com/in/yohanes-kankure-61833218a/"><span className="fab fa-linkedin-in"></span></a></li>
                     <li><a href="#"><span className="fab fa-twitter"></span></a></li>
                     <li><a href="#"><span className="fab fa-google-plus-g"></span></a></li>
                   </ul>
