@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 function Footer(props) {
   return (
     <footer className="main-footer">
@@ -13,7 +12,7 @@ function Footer(props) {
                   <div className="icon">
                     <span className="flaticon-pin"></span>
                   </div>
-                  <div className="text">Ethiopia<br /> Addis Ababa</div>
+                  <div className="text">Addis Ababa Ethiopia, <br /> Saris Adey Abeba</div>
                 </div>
               </div>
             </div>
@@ -24,7 +23,7 @@ function Footer(props) {
                     <span className="flaticon-email"></span>
                   </div>
                   <div className="text">Email us : <br /> <a
-                    href="mailto:elianatech@gmail.com">elianatech@gmail.com</a></div>
+                    href="mailto:ethio-wan-ip@gmail.com">ethio-WAN-IP.com</a></div>
                 </div>
               </div>
             </div>
@@ -34,7 +33,7 @@ function Footer(props) {
                   <div className="icon">
                     <span className="flaticon-phone"></span>
                   </div>
-                 <div className="text">Call us on: <br /> <strong>+251 917035669</strong></div>
+                  <div className="text">Call us on : <br /><strong>+251-917035669</strong></div>
                 </div>
               </div>
             </div>
@@ -92,7 +91,7 @@ function Footer(props) {
                   </div>
                   <ul className="social-links">
                     <li><a href="#"><span className="fab fa-facebook-f"></span></a></li>
-                    <li><a href="https://www.linkedin.com/in/yohanes-kankure-61833218a/"><span className="fab fa-linkedin-in"></span></a></li>
+                    <li><a href="#"><span className="fab fa-linkedin-in"></span></a></li>
                     <li><a href="#"><span className="fab fa-twitter"></span></a></li>
                     <li><a href="#"><span className="fab fa-google-plus-g"></span></a></li>
                   </ul>
@@ -104,7 +103,7 @@ function Footer(props) {
       </div>
       <div className="auto-container">
         <div className="footer-bottom">
-          <div className="copyright-text">© Copyright <a href="#">Abe Garage</a> 2023 . All right reserved.</div>
+          <div className="copyright-text">© Copyright <a href="#">ethio-WAN-IP</a> 2024 . All right reserved.</div>
         </div>
       </div>
     </footer>
