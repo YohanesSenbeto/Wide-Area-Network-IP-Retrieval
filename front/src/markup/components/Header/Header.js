@@ -4,9 +4,11 @@ import logo from "../../../assets/images/logo.png";
 import loginService from "../../../services/login.service";
 import { useAuth } from "../../../Contexts/AuthContext";
 import "./header.css";
+import getAuth from "../../../util/auth"
 
 function Header(props) {
   const { isLogged, setIsLogged, employee } = useAuth();
+   const user = getAuth.user
 
   const logOut = () => {
     loginService.logOut();
@@ -31,7 +33,7 @@ function Header(props) {
                 {isLogged ? (
                   <div className="link-btn">
                     <div className="phone-number">
-                      <strong>Welcome {user?.user_first_name}</strong>
+                      <strong>Welcome {user?.first_name}</strong>
                     </div>
                   </div>
                 ) : (

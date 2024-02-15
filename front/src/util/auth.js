@@ -1,9 +1,13 @@
-import React from 'react'
+// util/auth.js
 
-function auth() {
-  return (
-    <div>auth</div>
-  )
-}
+// Function to read the data from local storage
+const getAuth = async () => {
+  const user = await JSON.parse(localStorage.getItem("user"));
+  if (user && user.user_token) {
+    return user;
+  } else {
+    return {};
+  }
+};
 
-export default auth
+export default getAuth;
