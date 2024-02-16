@@ -1,7 +1,7 @@
 // WanIpAdder.js
 import React, { useState } from "react";
 import "./WanIpAdder.css"; // Import your CSS file
-import wanipadderService from "../../../services/wanipadder.service"; // Import the WAN IP service
+import wanIpAdderService from "../../../services/wanipadder.service"; // Import the WAN IP service
 
 function WanIpAdder() {
   const [wanIp, setWanIp] = useState("");
@@ -15,8 +15,9 @@ function WanIpAdder() {
     event.preventDefault();
 
     try {
+      console.log("About to add IP address");
       // Use the wanIpAdderService to send data to the server
-      await wanipadderService.addWanIp({
+      await wanIpAdderService.addWanIp({
         wanIp,
         subnetMask,
         defaultGateway,
@@ -26,8 +27,8 @@ function WanIpAdder() {
       setSuccessMessage("WAN IP added successfully!");
       setErrorMessage("");
     } catch (error) {
-      console.error("Error adding WAN IP to the server:", error);
-      setErrorMessage("Error adding WAN IP to the server.");
+      console.error("Error adding WAN IP to the server:", error.message);
+      setErrorMessage(`Error adding WAN IP to the server: ${error.message}`);
       setSuccessMessage("");
     }
   };
@@ -39,7 +40,7 @@ function WanIpAdder() {
           <h1>Add WAN IP</h1>
         </label>
         <input
-          type="text"
+          type="tel" // Use tel type for IP address
           value={wanIp}
           onChange={(e) => setWanIp(e.target.value)}
           required
