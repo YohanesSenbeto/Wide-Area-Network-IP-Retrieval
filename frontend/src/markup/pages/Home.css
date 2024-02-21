@@ -1,0 +1,51 @@
+.homebanner {
+  width: 95%;
+  margin-top: 0px;
+  margin-bottom: 30px;
+  height: 350px;
+  margin: auto;
+  
+}
+/* CSS for Typewriter Animation */
+/* CSS for Enhanced Typewriter Animation */
+
+.typewriter-container {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.typewriter-text {
+  
+  
+  white-space: wrap;
+  margin: 10px;
+  padding: 20px;
+  text-align: center;
+
+  letter-spacing: 0.1em;
+  font-size: 2em;
+  font-weight: bold;
+
+}
+p{
+  color: black;
+}
+.guide{
+  width: 100%;
+
+  margin-bottom: 20px;
+display: flex;
+}
+img{
+width: 60%;
+height: 400px;
+}
+.wan{
+  width: 50%;
+  height: 100%;
+  align-items: center;
+}
+
+
+
+
