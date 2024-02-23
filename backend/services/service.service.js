@@ -1,6 +1,6 @@
 const conn = require("../config/db.config");
 // Import the MySQL2 module Promise Wrapper
-const query = conn.query;
+// const conn.query = conn.conn.query;
 
 // Prepare a function that will execute the SQL queries asynchronously
 
@@ -9,10 +9,11 @@ const query = conn.query;
 // Check if service with given name already exists
 async function checkIfServiceExists(serviceName) {
   try {
-    const [rows] = await query(
+    const rows = await conn.query(
       "SELECT * FROM common_services WHERE service_name = ?",
       [serviceName]
     );
+    console.log(rows);
     return rows.length > 0;
   } catch (error) {
     console.error(error);
@@ -21,12 +22,12 @@ async function checkIfServiceExists(serviceName) {
 }
 
 // Create a new service
-async function createService(serviceData) {
+async function Addservice(serviceData) {
   try {
     const sql =
       "INSERT INTO common_services (service_name, service_description) VALUES (?, ?)";
     const params = [serviceData.service_name, serviceData.service_description];
-    await query(sql, params);
+    await conn.query(sql, params);
     return { status: "success" };
   } catch (error) {
     console.error(error);
@@ -37,7 +38,7 @@ async function createService(serviceData) {
 // Get all services
 async function getAllServices() {
   try {
-    const [rows] = await query("SELECT * FROM common_services");
+    const [rows] = await conn.query("SELECT * FROM common_services");
     return rows;
   } catch (error) {
     console.error(error);
@@ -46,8 +47,8 @@ async function getAllServices() {
 }
 
 module.exports = {
-  query,
   checkIfServiceExists,
-  createService,
+  Addservice,
   getAllServices,
+
 };

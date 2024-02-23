@@ -41,6 +41,7 @@ import AdminMenu from "./markup/components/Admin/AdminMenu/AdminMenu";
 import AddIpAddress from "./markup/pages/admin/AddIpAddress";
 import AddCustomers from "./markup/pages/admin/AddCustomers";
 import Tutorials from "./markup/components/Tutorials/tutorials";
+import AddService from "./markup/pages/admin/AddService";
 
 function App() {
   return (
@@ -61,7 +62,7 @@ function App() {
         <Route path="/admin/add-customer" element={<AddCustomers />} />
         <Route path="/admin" element={<AdminMenu />} />
         <Route path="/admin/customers" element={<AddCustomers />} />
-        <Route path="/admin/add-service" element={<AddcustomerForm />} />
+        <Route path="/admin/add-services" element={<AddService />} />
         <Route path="/admin/add-router" element={<AddcustomerForm />} />
         <Route path="/admin/add-staff" element={<Addstaff />} />
         <Route path="/admin/add-ipaddress" element={<AddIpAddress />} />
