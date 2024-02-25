@@ -1,6 +1,6 @@
 // wanIpAdderService.js
 
-const api_url = `http://localhost:8000`
+const api_url = `http://34.204.101.218:80`
 
 const addWanIp = async (wanIp) => {
   console.log(wanIp);
