@@ -12,6 +12,7 @@ function Header(props) {
 
   const logOut = () => {
     loginService.logOut();
+    loginService.logOut();
     setIsLogged(false);
   };
 

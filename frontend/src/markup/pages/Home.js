@@ -10,14 +10,6 @@ function Home(props) {
     <div>
       {/* Banner Image */}
       <img className="homebanner" src={banner} alt="banner"></img>
-
-      {/* Introduction Text */}
-      <div className="intro-text">
-        <h2>Get Your Subnet Mask and Default Gateway Effortlessly!</h2>
-        <h6>
-          Discover your WAN IP information with ease. Simply fill out the WANIP form, provide us with your IP address, and we'll take care of the rest.
-        </h6>
-      </div>
       <h1>Steps  to Use:</h1> 
       <div className='guide'>
       <img src={guide} alt="guide"></img>

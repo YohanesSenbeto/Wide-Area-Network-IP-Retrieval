@@ -92,7 +92,7 @@ function Footer(props) {
                   <div className="newsletter-form">
                   </div>
                   <ul className="social-links">
-                    <li><a href="#"><span className="fab fa-facebook-f"></span></a></li>
+                    <li><a href="https://www.facebook.com/ElianaiTechshow"><span className="fab fa-facebook-f"></span></a></li>
                     <li><a href="http://linkedin.com/in/yohanes-senbeto-61833218a"><span className="fab fa-linkedin-in"></span></a></li>
                     <li><a href="https://twitter.com/YohanesSenbeto"><span className="fab fa-twitter"></span></a></li>
                     <li><a href="https://www.youtube.com/channel/UC20UnSFgW5KadIRHbo-Rbkg?sub_confirmation=1"><span className="fab fa-youtube"></span></a></li>
