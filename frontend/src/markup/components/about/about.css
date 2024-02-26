@@ -1,9 +1,35 @@
-.about-title{
-margin-bottom: 15px;
-margin-top: 10px;
-}
-.banner-image{
-    width: 100%;
-    margin-bottom: 1px;
-    margin-top: 2px;
-}
+/* about.css */
+
+.about-container {
+    padding: 20px;
+  }
+  
+  .card {
+    background-color: #333; /* Dark background color */
+    color: #fff; /* Text color */
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+  }
+  
+  .card-title {
+    font-size: 30px;
+    margin-bottom: 15px;
+  }
+  
+  .card-text {
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  
+  .banner-image {
+    width: 200%;
+    max-width: 400px; /* Adjust as needed */
+    margin-top: 20px;
+  }
+  
+  /* Optional: Small text at the bottom */
+  .card-text small {
+    color: #ccc;
+  }
+  

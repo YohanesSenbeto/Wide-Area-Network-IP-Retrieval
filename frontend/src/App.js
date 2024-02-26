@@ -42,7 +42,6 @@ import AddIpAddress from "./markup/pages/admin/AddIpAddress";
 import AddCustomers from "./markup/pages/admin/AddCustomers";
 import Tutorials from "./markup/components/Tutorials/tutorials";
 import AddService from "./markup/pages/admin/AddService";
-
 function App() {
   return (
     <>
