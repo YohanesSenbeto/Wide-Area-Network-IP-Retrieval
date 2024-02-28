@@ -13,8 +13,9 @@ import Orders from "./markup/pages/admin/Orders";
 import Customers from "./markup/pages/admin/AddCustomers";
 // Import the staffs component
 import Staffs from "./markup/pages/admin/Staffs";
+import Services from './markup/components/Services/Service';
+import Support from "./markup/components/support/support";
 import tutorials from "./markup/components/Tutorials/tutorials";
-
 // Import the css files
 import "./assets/template_assets/css/bootstrap.css";
 import "./assets/template_assets/css/style.css";
@@ -53,6 +54,8 @@ function App() {
         <Route path="/WanIp" element={<Wanip />} />
 
         <Route path="/about" element={<About />} />
+        <Route path="/Services" element={<Services />} />
+        <Route path="/Support" element={<Support />} />
         <Route path="/Tutorials" element={<Tutorials/>} />
         <Route path="/login" element={<Login />} />
         <Route path="/login/manager" element={<Login />} />

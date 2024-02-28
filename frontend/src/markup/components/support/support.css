@@ -1,0 +1,53 @@
+/* support.css */
+
+/* Styles for the support page container */
+.support-page {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0px;
+    font-family: Arial, sans-serif;
+}
+
+/* Styles for the form container */
+.form-container {
+    background-color: #f9f9f9;
+    padding: 5px;
+    margin-top: 5px;
+    border-radius: 5px;
+}
+
+/* Styles for form labels */
+.form-container label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Styles for form input fields */
+.form-container input[type="text"],
+.form-container input[type="email"],
+.form-container textarea {
+    width:350px; /* Adjusted width to accommodate the border and padding */
+    padding: 5px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    box-sizing: border-box;
+}
+
+/* Styles for the solid border of the message input field */
+.solid-border {
+    border-style: solid;
+}
+/* Styles for form submit button */
+.form-container button[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 8px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+/* Hover effect for submit button */
+.form-container button[type="submit"]:hover {
+    background-color: #45a049;
+}

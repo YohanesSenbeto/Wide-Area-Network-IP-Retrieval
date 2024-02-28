@@ -13,6 +13,7 @@ const serviceRoutes = require("./service.routes");
 const customerRoutes = require("./customer.routes");
 const routerRoutes = require("./router.routes");
 const wanipRoutes = require("./wanip.routes");
+const supportRoutes = require("./support.routes");
 // Add the install router to the main router
 router.use(installRouter);
 // Add the employee routes to the main router
@@ -26,5 +27,6 @@ router.use(serviceRoutes);
 
 router.use(customerRoutes);
 router.use(routerRoutes);
+router.use(supportRoutes);
 // Export the router
 module.exports = router;

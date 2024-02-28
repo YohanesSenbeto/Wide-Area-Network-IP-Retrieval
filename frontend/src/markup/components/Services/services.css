@@ -1,0 +1,34 @@
+/* styles.css */
+
+/* Styles for the app container */
+.app {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Styles for the services list */
+  .services-list {
+    display:flex;
+    grid-gap: 15px;
+  }
+  
+  /* Styles for individual service items */
+  .service {
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-radius: 5px;
+  }
+  
+  /* Styles for service title */
+  .service h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
+  
+  /* Styles for service description */
+  .service p {
+    margin: 0;
+  }
+  
