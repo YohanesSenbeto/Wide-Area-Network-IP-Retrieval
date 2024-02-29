@@ -7,7 +7,7 @@ import "./header.css";
 import getAuth from "../../../util/auth";
 
 function Header(props) {
-  const { isLogged, setIsLogged, employee } = useAuth();
+  const { isLogged, setIsLogged, staff } = useAuth();
   const user = getAuth;
 
   const logOut = () => {

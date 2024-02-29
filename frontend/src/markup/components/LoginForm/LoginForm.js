@@ -82,29 +82,24 @@ function LoginForm() {
       userType,
     };
     // Call the service
-    const loginuser = loginService.logIn(formData);
-    loginuser
-      .then((response) => response.json())
-      .then((response) => {
-        if (response.status === "success") {
-          // Save the user in the local storage
-          if (response.data.user_token) {
-            localStorage.setItem("user", JSON.stringify(response.data));
-          }
-          // Redirect the user to the dashboard
-          if (location.pathname === "/login") {
-            window.location.replace("/");
-          } else {
-            window.location.reload();
-          }
-        } else {
-          // Show an error message
-          setServerError(response.message);
-        }
-      })
-      .catch((err) => {
-        setServerError("An error has occurred. Please try again later." + err);
-      });
+    try {
+      const response = await loginService.login(formData);
+
+      console.log(response);
+      if (response.status === "success") {
+        // Save the user in the local storage
+       
+        // Redirect the user to the dashboard
+        navigate("/home");
+      } else {
+        // Show an error message
+        setServerError(response.message);
+      }
+      // Redirect the user to the dashboard
+    } catch (error) {
+      // Handle login error (e.g., display error message)
+      setServerError("Login failed. Please try again.");
+    }
   };
 
   return (

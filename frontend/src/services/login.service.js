@@ -1,5 +1,5 @@
-const api_url = `localhost`;
-//http://34.204.101.218:80
+const api_url = `http://localhost:8000`;
+//34.204.101.218:80
 
 // A function to send the login request to the server
 const logIn = async (formData) => {
@@ -13,13 +13,10 @@ const logIn = async (formData) => {
     console.log("About to send login request");
     console.log(requestOptions.body);
     const userType = formData.userType;
-    console.log(userType);
-
-    const response = await fetch(
-      `${api_url}/api/login/${userType}`,
-      requestOptions
-    );
+    console.log(formData.userType);
+    const response = await fetch(`${api_url}/api/login`, requestOptions);
     const responseData = await response.json(); // Parse the response JSON
+    console.log(responseData)
 
     if (response.status === 200 && responseData.status === "success") {
       // Save the user in the local storage

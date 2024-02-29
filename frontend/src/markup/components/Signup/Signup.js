@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "./signup.css";
 import { useNavigate, useLocation } from "react-router-dom";
 import signupService from "../../../services/signup.service";
-import { signUp, logOut } from "../../../services/signup.service";
+
 
 function SignupForm() {
   const navigate = useNavigate();
@@ -81,7 +81,7 @@ function SignupForm() {
       console.log(formData);
 
       // Call the service for user signup
-      const signupUser = signUp(formData);
+      const signupUser = signupService.signUp(formData);
 
       signupUser
         .then((response) => response.json())
@@ -92,11 +92,9 @@ function SignupForm() {
               localStorage.setItem("user", JSON.stringify(response.data));
             }
             // Redirect the user to the dashboard or homepage
-            if (location.pathname === "/signup") {
-              window.location.replace("/login");
-            } else {
-              window.location.reload();
-            }
+           
+              navigate("/signupSuccess");
+            
           } else {
             // Show an error message
             setServerError(response.message);

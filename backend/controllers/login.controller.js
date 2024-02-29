@@ -65,8 +65,6 @@ async function logIn(req, res) {
       message: "User logged in successfully",
       data: sendBack,
     });
-
-    
   } catch (error) {
     console.error(error);
     res.status(500).json({

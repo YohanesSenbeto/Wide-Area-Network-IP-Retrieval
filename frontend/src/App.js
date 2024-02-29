@@ -43,6 +43,7 @@ import AddIpAddress from "./markup/pages/admin/AddIpAddress";
 import AddCustomers from "./markup/pages/admin/AddCustomers";
 import Tutorials from "./markup/components/Tutorials/tutorials";
 import AddService from "./markup/pages/admin/AddService";
+import SignupSuccess from "./markup/components/Signup/SignupSuccess";
 function App() {
   return (
     <>
@@ -50,8 +51,11 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/Register" element={<SignupForm />} />
+
+          <Route path="/signupSuccess" element={<SignupSuccess />} />
         <Route path="/addWanIp" element={<WanIpAdder />} />
         <Route path="/WanIp" element={<Wanip />} />
+
 
         <Route path="/about" element={<About />} />
         <Route path="/Services" element={<Services />} />

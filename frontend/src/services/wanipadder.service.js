@@ -1,7 +1,7 @@
 // wanIpAdderService.js
 
-const api_url = `locaklhost`
-//http://34.204.101.218:80
+const api_url = process.env.REACT_APP_API_URL;
+//
 const addWanIp = async (wanIp) => {
   console.log(wanIp);
   try {

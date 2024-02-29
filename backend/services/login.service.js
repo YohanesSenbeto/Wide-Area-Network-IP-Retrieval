@@ -16,11 +16,17 @@ async function checkIfUserExists(email, userType) {
     default:
       tableName = "users";
   }
-
-  const query = `SELECT * FROM ${tableName} WHERE ${tableName}_email = ?`;
-  const rows = await conn.query(query, [email]);
-  console.log(rows);
-  return rows.length > 0;
+  if (tableName === "users") {
+    const query = `SELECT * FROM ${tableName} WHERE user_email = ?`;
+    const rows = await conn.query(query, [email]);
+    console.log(rows);
+    return rows.length > 0;
+  } else {
+    const query = `SELECT * FROM ${tableName} WHERE staff_email = ?`;
+    const rows = await conn.query(query, [email]);
+    console.log(rows);
+    return rows.length > 0;
+  }
 }
 
 async function getUserData(email, userType) {
@@ -36,12 +42,21 @@ async function getUserData(email, userType) {
       tableName = "users";
   }
 
-  const query = `SELECT * FROM ${tableName} WHERE ${tableName}_email = ?`;
-  const userData = await conn.query(query, [email]);
+
+  if (tableName === "users") {
+    const query = `SELECT * FROM ${tableName} WHERE user_email = ?`;
+ const userData = await conn.query(query, [email]);
   console.log(userData);
-  return userData[0]; // Assuming you expect only one user with a given email
+  return userData[0]; 
+  } else {
+    const query = `SELECT * FROM ${tableName} WHERE staff_email = ?`;
+    const userData = await conn.query(query, [email]);
+  console.log(userData);
+  return userData[0]; 
+  }
 }
 
+ 
 // A function to validate user login
 async function validateUserLogin(user_email, user_password, userType) {
   try {
