@@ -1,33 +1,32 @@
 /* Logo */
 .logo {
-  width: 150px; /* Adjust the width as needed */
+  width: 100px; /* Adjust the width as needed */
   height: auto; /* Maintain aspect ratio */
-  margin-right: 100px; /* Reduce right margin to move the logo left */
+  margin-right: 20px; /* Reduce right margin to move the logo left */
   margin-left: 0; /* Set left margin to 0 to ensure it starts from the left edge */
   display: flex;
   align-items: center; /* Align the logo vertically */
 }
 
-
 /* Navigation */
 .navigation {
-  display: flex;
+  display:flex;
   justify-content: center;
-  font-size: 5px; /* This seems unusually small; you might want to adjust */
-  margin-right: 0px;
+  font-size: 15px; /* Updated font size */
+  margin-right: 0;
   width: 100%;
 }
 
 /* Navigation */
 nav {
   display: flex;
-  font-size: small;
+  font-size: 7px; /* Updated font size */
   align-items: center;
-  justify-content: space-between;
-  margin-top: 5px;
+  justify-content:center;
+  margin-top: 2px;
   padding-top: 0;
   margin-right: 0px;
-  margin-left: 0;
+  margin-left: 0px;
 }
 
 /* Home */
@@ -60,11 +59,77 @@ nav {
   background-color: black;
 }
 
-/* Responsive Styles */
+/* Burger Menu */
+.burger-menu {
+  display: none; /* Initially hide the burger menu */
+}
+
+/* Dropdown Navigation for Mobile Devices */
 @media (max-width: 768px) {
-  /* Ensure navigation buttons display in one row on smaller screens */
-  .navigation .Link-btn {
-    flex: 1; /* Adjust flex property to evenly distribute buttons */
-    max-width: 100px; /* Set maximum width for individual buttons */
+  /* Hide the regular navigation */
+  .navigation {
+    display: none;
+  }
+
+  /* Display the burger menu */
+  .burger-menu {
+    display: block;
+    /* Add styling for the burger menu icon */
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+    background-color: #fff;
+    border: 1px solid #000;
+    position: relative;
+  }
+
+  .burger-menu .line {
+    width: 100%;
+    height: 3px;
+    background-color: #000;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  .burger-menu .line:first-child {
+    top: 25%;
+  }
+
+  .burger-menu .line:last-child {
+    top: 75%;
+  }
+
+  .burger-menu.active .line:first-child {
+    transform: rotate(45deg) translate(6px, 6px);
+  }
+
+  .burger-menu.active .line:last-child {
+    transform: rotate(-45deg) translate(6px, -6px);
+  }
+
+  .burger-menu.active .line:nth-child(2) {
+    opacity: 0;
+  }
+
+  /* Show dropdown menu */
+  nav.active .navigation {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #fff;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    width: 100%;
+  }
+
+  /* Adjust styles for individual navigation items */
+  nav.active .navigation .Link-btn {
+    padding: 10px;
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+    width: 100%;
   }
 }

@@ -1,10 +1,10 @@
 # Port to run the server on 
 PORT=8000
 # Database connection details 
-DB_PASS=7G6kzqYYvm
-DB_USER=sql6684206
-DB_NAME=sql6684206
-DB_HOST=sql6.freesqldatabase.com
+DB_PASS=
+DB_USER=
+DB_NAME=
+DB_HOST=
 DB_PORT=3306
 #DB_SOCKET_PATH=/Applications/MAMP/tmp/mysql/mysql.sock
 # Frontend URL 

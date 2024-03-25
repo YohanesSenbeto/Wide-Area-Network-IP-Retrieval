@@ -1,71 +1,69 @@
-/* WanIpRequester.css */
-
 .container {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh; /* Adjust as needed */
-  width: 50%;
+  width: 100%;
+  height: auto;
 }
 
-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  width: 800px;
+.form-container {
+  width: 80%; /* Adjust width as needed */
+  margin-top: 20px; /* Add top margin to move up the form */
 }
 
-label {
-  margin-top: 20px;
-  display: block;
-  margin-bottom: 10px;
-  font-size: 1.2em; /* Make the label text slightly larger */
-  font-weight: bold; /* Make the label text bold */
+.form-group {
+  margin-bottom: 10px; /* Decrease bottom margin for form groups */
 }
 
-input[type="submit"] {
-  width: 50%;
+.form-label {
+  font-size: 14px; /* Decrease font size for labels */
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.form-control,
+.select-control {
+  width: 100%; /* Make form controls full width */
+  padding: 8px; /* Adjust padding for form controls */
+  border-radius: 3px;
+  border: 1px solid #007bff; /* Add border for form controls */
+  font-size: 14px; /* Decrease font size for form controls */
+  text-align: left; /* Align text to the left */
+}
+
+/* Decrease placeholder font size for WAN IP input */
+.form-control::placeholder {
+  font-size: 12px; /* Decrease placeholder font size */
+}
+
+/* Increase placeholder font size for select control */
+.select-control::placeholder {
+  font-size: 14px; /* Increase placeholder font size */
+  width: calc(100% - 16px); /* Adjust width of placeholder */
+  text-align: left; /* Align placeholder text to the left */
+  padding-left: 15px; /* Push placeholder text slightly to the right */
+}
+
+.submit-button {
+  width: 100%; /* Make submit button full width */
   padding: 10px;
   border-radius: 5px;
   border: none;
-  background-color: #ff5722; /* Orange */
+  background-color: #007bff; /* Primary color */
   color: #fff;
   cursor: pointer;
 }
 
-input[type="text"] {
-  width: 200px;
-  padding: 10px;
-  border-radius: 5px;
-  border: none;
-  box-shadow: 0 0 1px 1px rgb(71, 69, 69); /* Add a subtle shadow to the input field */
-}
-
-input[type="submit"]:hover {
-  background-color: #ff9800; /* Lighter Orange */
+.submit-button:hover {
+  background-color: #0056b3; /* Darker shade of primary color on hover */
 }
 
 .result {
   margin-top: 20px;
-  background-color: #f3f3f3;
-  padding: 10px;
-  border-radius: 5px;
-  width: 600px;
 }
 
-.error-message {
-  color: #f00; /* Red for error messages */
-}
-
-/* Add this to style the video card */
 .video-card {
   margin-top: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  padding: 10px;
-  background-color: #fff;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .video-card h3 {

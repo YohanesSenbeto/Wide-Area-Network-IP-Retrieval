@@ -1,35 +1,39 @@
-/* about.css */
+.about-title {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  color: #333; /* Adjust color as needed */
+  animation: fadeInDown 1s ease-in-out; /* Apply animation */
+}
 
-.about-container {
-    padding: 20px;
+.about-description {
+  font-size: 25px;
+  line-height: 1.6;
+  margin-bottom: 30px;
+  color:black;
+  animation: slideInUp 1s ease-in-out; /* Apply animation */
+}
+.p{
+  color: black;
+}
+
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
   }
-  
-  .card {
-    background-color: #333; /* Dark background color */
-    color: #fff; /* Text color */
-    padding: 20px;
-    border-radius: 5px;
-    margin-bottom: 20px;
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  .card-title {
-    font-size: 30px;
-    margin-bottom: 15px;
+}
+
+@keyframes slideInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
   }
-  
-  .card-text {
-    font-size: 16px;
-    line-height: 1.5;
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
-  
-  .banner-image {
-    width: 200%;
-    max-width: 400px; /* Adjust as needed */
-    margin-top: 20px;
-  }
-  
-  /* Optional: Small text at the bottom */
-  .card-text small {
-    color: #ccc;
-  }
-  
+}

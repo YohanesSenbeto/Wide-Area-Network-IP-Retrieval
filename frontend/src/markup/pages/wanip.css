@@ -1,0 +1,27 @@
+.wanip-container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+  }
+  
+  .wanip-header {
+    text-align: center;
+    margin-bottom: 1px;
+  }
+  
+  .wanip-header h4 {
+    color: #333;
+  }
+  
+  .wanip-form {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Style the form elements as needed */
+  

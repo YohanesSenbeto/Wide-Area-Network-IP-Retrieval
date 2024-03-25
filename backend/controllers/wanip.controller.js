@@ -58,7 +58,7 @@ async function signup(req, res) {
     user_subcity,
     user_phone,
   } = req.body;
-
+  console.log(req.body);
   // Validate required fields
   if (!first_name || !last_name || !user_email || !user_password) {
     res.status(400).json({ error: "All fields are required." });

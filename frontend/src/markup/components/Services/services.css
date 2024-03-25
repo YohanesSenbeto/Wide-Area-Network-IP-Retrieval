@@ -1,34 +1,33 @@
-/* styles.css */
-
-/* Styles for the app container */
 .app {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    font-family: Arial, sans-serif;
-  }
-  
-  /* Styles for the services list */
-  .services-list {
-    display:flex;
-    grid-gap: 15px;
-  }
-  
-  /* Styles for individual service items */
-  .service {
-    background-color: #f4f4f4;
-    padding: 20px;
-    border-radius: 5px;
-  }
-  
-  /* Styles for service title */
-  .service h3 {
-    margin-top: 0;
-    margin-bottom: 10px;
-  }
-  
-  /* Styles for service description */
-  .service p {
-    margin: 0;
-  }
-  
+  padding: 20px;
+  text-align: center;
+}
+
+.app-title {
+  margin-bottom: 30px;
+}
+
+.services-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  justify-content: center;
+  align-items: center;
+}
+
+.service {
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+}
+
+.service h3 {
+  color: #007bff;
+  margin-bottom: 10px;
+}
+
+.service p {
+  color: #666;
+  font-size: 0.9rem;
+}
