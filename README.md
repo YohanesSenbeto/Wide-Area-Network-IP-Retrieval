@@ -1,3 +1,20 @@
+cookies session need
+time duration
+
+### Cookies vs Session
+
+if we copy the path paste on other page
+
+form validation specially contact number long.
+email format
+password characters if it is a numeric or alphabetic or special character
+password length
+password match
+
+authentication email or message
+
+wrong password or not registered
+
 # WAN IP Project README
 
 Welcome to the WAN IP Project README! This project aims to assist users of Ethio Telecom in setting up their Wi-Fi router modems by providing their WAN IP information. Follow this guide to learn about the project's purpose, installation process, usage, and more.

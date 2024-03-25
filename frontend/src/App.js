@@ -1,8 +1,6 @@
-// Import react
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Sidebar from "./markup/components/Sidebar/Sidebar";
-// import Navbar from "./Navbar/Navbar";
 // Import the Routes and Route components from react-router
 import { Routes, Route } from "react-router";
 // Import the page components
@@ -48,8 +46,8 @@ import AddCustomers from "./markup/pages/admin/AddCustomers";
 import Tutorials from "./markup/components/Tutorials/tutorials";
 import AddService from "./markup/pages/admin/AddService";
 import SignupSuccess from "./markup/components/Signup/SignupSuccess";
+
 function App() {
-<<<<<<< HEAD
     return (
         <>
             <Header />
@@ -58,7 +56,6 @@ function App() {
                 <Route path="/Register" element={<SignupForm />} />
                 <Route path="/addWanIp" element={<WanIpAdder />} />
                 <Route path="/WanIp" element={<Wanip />} />
-
                 <Route path="/about" element={<About />} />
                 <Route path="/Services" element={<Services />} />
                 <Route path="/Support" element={<Support />} />
@@ -76,8 +73,8 @@ function App() {
                 <Route path="/Success" element={<Success />} />
                 <Route path="/admin/add-ipaddress" element={<AddIpAddress />} />
                 <Route path="/unauthorized" element={<Unauthorized />} />
-                {/* // Add the Orders Route  */}
 
+                {/* // Add the Orders Route  */}
                 <Route
                     path="/admin/orders"
                     element={
@@ -106,74 +103,6 @@ function App() {
                         </PrivateAuthRoute>
                     }
                 />
-                {/* 
-=======
-  return (
-    <>
-      <Header />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/Register" element={<SignupForm />} />
-
-          <Route path="/signupSuccess" element={<SignupSuccess />} />
-        <Route path="/addWanIp" element={<WanIpAdder />} />
-        <Route path="/WanIp" element={<Wanip />} />
-
-
-        <Route path="/about" element={<About />} />
-        <Route path="/Services" element={<Services />} />
-        <Route path="/Support" element={<Support />} />
-        <Route path="/Tutorials" element={<Tutorials/>} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/login/manager" element={<Login />} />
-        <Route path="/login/admin" element={<Login />} />
-        <Route path="/login/staff" element={<Login />} />
-        <Route path="/admin/add-customer" element={<AddCustomers />} />
-        <Route path="/admin" element={<AdminMenu />} />
-        <Route path="/admin/customers" element={<AddCustomers />} />
-        <Route path="/admin/add-services" element={<AddService />} />
-        <Route path="/admin/add-router" element={<AddcustomerForm />} />
-        <Route path="/admin/add-staff" element={<Addstaff />} />
-        <Route path="/admin/add-ipaddress" element={<AddIpAddress />} />
-        <Route path="/unauthorized" element={<Unauthorized />} />
-        {/* // Add the Orders Route  */}
-        <Route
-          path="/admin/orders"
-          element={
-            <PrivateAuthRoute roles={[1, 2, 3]}>
-              <Orders />
-            </PrivateAuthRoute>
-          }
-        />
-        {/* // Add the Customers Route  */}
-        <Route
-          path="/admin/customers"
-          element={
-            <PrivateAuthRoute roles={[2, 3]}>
-              <Customers />
-            </PrivateAuthRoute>
-          }
-        />
-        {/* // Add the staffs Route  */}
-        <Route path="/admin/staffs" element={<Staffs />} />
-        <Route path="/admin/staffs" element={<AddStaff />} />
-        <Route
-          path="/admin/add-staff"
-          element={
-            <PrivateAuthRoute roles={[3]}>
-              <Addstaff />
-            </PrivateAuthRoute>
-          }
-        />
-        {/* 
->>>>>>> 699f29c32fbf9e098d946472a8d8e028210e44bf
-          Customers (/admin/customers) - managers and admins
-          Orders (/admin/orders) - Can be accessed by all staffs
-          Add staff (/admin/add-staff) - admins only 
-            - Admin: 3 
-            - Manager: 2 
-            - staff: 1 
-        */}
             </Routes>
             <Footer />
         </>

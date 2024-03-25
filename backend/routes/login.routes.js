@@ -6,7 +6,6 @@ const router = express.Router();
 const loginControllers = require("../controllers/login.controller");
 
 // Route for normal users
-<<<<<<< HEAD
 router.post("/api/login/normal", loginControllers.logIn);
 
 // Route for admin users
@@ -53,9 +52,6 @@ router.post("/api/login/staff", async (req, res, next) => {
         });
     }
 });
-=======
-router.post("/api/login", loginControllers.logIn);
->>>>>>> 699f29c32fbf9e098d946472a8d8e028210e44bf
 
 // Export the router
 module.exports = router;

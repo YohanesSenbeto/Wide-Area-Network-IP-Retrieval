@@ -2,12 +2,7 @@ import React, { useState } from "react";
 import "./signup.css";
 import { useNavigate, useLocation } from "react-router-dom";
 import signupService from "../../../services/signup.service";
-<<<<<<< HEAD
 import { signUp, logOut } from "../../../services/signup.service";
-import SignupSuccess from "./Success";
-=======
-
->>>>>>> 699f29c32fbf9e098d946472a8d8e028210e44bf
 
 function SignupForm() {
     const navigate = useNavigate();
@@ -47,7 +42,6 @@ function SignupForm() {
             setLastNameError("");
         }
 
-<<<<<<< HEAD
         // Email validation
         if (!user_email) {
             setEmailError("Please enter your email address");
@@ -64,73 +58,6 @@ function SignupForm() {
                 setEmailError("");
             }
         }
-=======
-    // Email validation
-    if (!user_email) {
-      setEmailError("Please enter your email address");
-      valid = false;
-    } else if (!user_email.includes("@")) {
-      setEmailError("Invalid email format");
-      valid = false;
-    } else {
-      const regex = /^\S+@\S+\.\S+$/;
-      if (!regex.test(user_email)) {
-        setEmailError("Invalid email format");
-        valid = false;
-      } else {
-        setEmailError("");
-      }
-    }
-
-    // Password validation (must be at least 6 characters long)
-    if (!user_password || user_password.length < 6) {
-      setPasswordError("Password must be at least 6 characters long");
-      valid = false;
-    } else {
-      setPasswordError("");
-    }
-
-    // Handle form submission here
-    if (valid) {
-      const formData = {
-        first_name,
-        last_name,
-        user_email,
-        user_password,
-        user_city,
-        user_subcity,
-        user_phone,
-      };
-      console.log(formData);
-
-      // Call the service for user signup
-      const signupUser = signupService.signUp(formData);
-
-      signupUser
-        .then((response) => response.json())
-        .then((response) => {
-          if (response.status === "success") {
-            // Save the user in the local storage
-            if (response.data.user_token) {
-              localStorage.setItem("user", JSON.stringify(response.data));
-            }
-            // Redirect the user to the dashboard or homepage
-           
-              navigate("/signupSuccess");
-            
-          } else {
-            // Show an error message
-            setServerError(response.message);
-          }
-        })
-        .catch((err) => {
-          setServerError(
-            "An error has occurred. Please try again later." + err
-          );
-        });
-    }
-  };
->>>>>>> 699f29c32fbf9e098d946472a8d8e028210e44bf
 
         // Password validation (must be at least 6 characters long)
         if (!user_password || user_password.length < 6) {
@@ -168,12 +95,11 @@ function SignupForm() {
                             );
                         }
                         // Redirect the user to the dashboard or homepage
-                        if (location.pathname === "/Register") {
-                            window.location.replace("/Success");
+                        if (location.pathname === "/signup") {
+                            window.location.replace("/login");
+                        } else {
+                            window.location.reload();
                         }
-
-                        navigate("/signupSuccess");
-                        <SignupSuccess />;
                     } else {
                         // Show an error message
                         setServerError(response.message);
@@ -189,17 +115,15 @@ function SignupForm() {
 
     return (
         <section className="contact-section">
-            <div className="container">
-                <h4>Create a new account</h4>
-                <div className="contact-title"></div>
+            <div className="auto-container">
+                <div className="contact-title">
+                    <h2>Create a new account</h2>
+                </div>
                 <div className="row clearfix">
                     <div className="form-column col-lg-7">
                         <div className="inner-column">
                             <div className="contact-form">
-                                <form
-                                    className="container"
-                                    onSubmit={handleSubmit}
-                                >
+                                <form onSubmit={handleSubmit}>
                                     <div className="row clearfix">
                                         <div className="form-group col-md-6">
                                             {serverError && (
@@ -210,7 +134,6 @@ function SignupForm() {
                                                     {serverError}
                                                 </div>
                                             )}
-
                                             <input
                                                 type="text"
                                                 name="first_name"

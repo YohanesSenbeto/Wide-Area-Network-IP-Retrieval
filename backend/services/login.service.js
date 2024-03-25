@@ -1,13 +1,9 @@
-// Import the query function from the db.config.js file
 const conn = require("../config/db.config");
-// Import the bcrypt module
 const bcrypt = require("bcryptjs");
 
-// A function to check if user exists in the database
 async function checkIfUserExists(email, userType) {
     let tableName;
 
-<<<<<<< HEAD
     switch (userType) {
         case "admin":
         case "manager":
@@ -18,31 +14,10 @@ async function checkIfUserExists(email, userType) {
             tableName = "users";
     }
 
-=======
-  switch (userType) {
-    case "admin":
-    case "manager":
-    case "staff":
-      tableName = "staff";
-      break;
-    default:
-      tableName = "users";
-  }
-  if (tableName === "users") {
->>>>>>> 699f29c32fbf9e098d946472a8d8e028210e44bf
-    const query = `SELECT * FROM ${tableName} WHERE user_email = ?`;
+    const query = `SELECT * FROM ${tableName} WHERE ${tableName}_email = ?`;
     const rows = await conn.query(query, [email]);
     console.log(rows);
     return rows.length > 0;
-<<<<<<< HEAD
-=======
-  } else {
-    const query = `SELECT * FROM ${tableName} WHERE staff_email = ?`;
-    const rows = await conn.query(query, [email]);
-    console.log(rows);
-    return rows.length > 0;
-  }
->>>>>>> 699f29c32fbf9e098d946472a8d8e028210e44bf
 }
 
 async function getUserData(email, userType) {
@@ -58,29 +33,12 @@ async function getUserData(email, userType) {
             tableName = "users";
     }
 
-<<<<<<< HEAD
     const query = `SELECT * FROM ${tableName} WHERE ${tableName}_email = ?`;
     const userData = await conn.query(query, [email]);
     console.log(userData);
     return userData[0]; // Assuming you expect only one user with a given email
-=======
-
-  if (tableName === "users") {
-    const query = `SELECT * FROM ${tableName} WHERE user_email = ?`;
- const userData = await conn.query(query, [email]);
-  console.log(userData);
-  return userData[0]; 
-  } else {
-    const query = `SELECT * FROM ${tableName} WHERE staff_email = ?`;
-    const userData = await conn.query(query, [email]);
-  console.log(userData);
-  return userData[0]; 
-  }
->>>>>>> 699f29c32fbf9e098d946472a8d8e028210e44bf
 }
 
- 
-// A function to validate user login
 async function validateUserLogin(user_email, user_password, userType) {
     try {
         let tableName, idField, emailField, passwordField;
@@ -131,7 +89,6 @@ async function validateUserLogin(user_email, user_password, userType) {
     }
 }
 
-// A function to get all users
 async function getAllUsers(userType) {
     let tableName;
 
@@ -150,7 +107,6 @@ async function getAllUsers(userType) {
     return rows;
 }
 
-// Export the functions for use in the controller
 module.exports = {
     checkIfUserExists,
     validateUserLogin,
