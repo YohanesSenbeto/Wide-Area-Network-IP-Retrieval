@@ -35,7 +35,7 @@ export const AuthProvider = ({ children }) => {
 
 
 //=================================================================
-//=======================for employee=============================
+//=======================for staff=============================
 
 // Import React and the Hooks we need here 
 
@@ -50,23 +50,23 @@ export const AuthProviderTwo = ({ children }) => {
   const [isLogged, setIsLogged] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
   
-  const [employee, setEmployee] = useState(null);
+  const [staff, setStaff] = useState(null);
 
-  const value = { isLogged, isAdmin, setIsAdmin, setIsLogged, employee };
+  const value = { isLogged, isAdmin, setIsAdmin, setIsLogged, staff };
 
   useEffect(() => {
     // Retrieve the logged in user from local storage
-    const loggedInEmployee = getAuth();
+    const loggedInstaff = getAuth();
     // console.log(loggedInEmployee);
-    loggedInEmployee.then((response) => {
+    loggedInstaff.then((response) => {
       // console.log(response);
-      if (response.employee_token) {
+      if (response.staff_token) {
         setIsLogged(true);
         // 3 is the employee_role for admin
         if (response.employee_role === 3) {
           setIsAdmin(true);
         }
-        setEmployee(response);
+        setStaff(response);
       }
     });
   }, []);

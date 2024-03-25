@@ -23,6 +23,7 @@ function AddcustomerForm(props) {
   let loggedIncustomerToken = "";
   // Destructure the auth hook and get the token
   const { customer } = useAuth();
+  console.log(customer)
   if (customer && customer.customer_token) {
     loggedIncustomerToken = customer.customer_token;
   }
@@ -75,7 +76,10 @@ function AddcustomerForm(props) {
       company_role_id,
     };
     // Pass the form data to the service
-    const newcustomer = customerService.createcustomer(formData, loggedIncustomerToken);
+    const newcustomer = customerService.createCustomer(
+      formData,
+      loggedIncustomerToken
+    );
     newcustomer
       .then((response) => response.json())
       .then((data) => {

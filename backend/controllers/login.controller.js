@@ -73,6 +73,47 @@ async function logIn(req, res) {
             message: "An error occurred during login",
         });
     }
+<<<<<<< HEAD
+=======
+
+    // If the user is not found or password is incorrect
+    if (!user) {
+      return res.status(401).json({
+        status: "fail",
+        message: "Invalid credentials",
+      });
+    }
+
+    // If successful, send a response to the client
+    const payload = {
+      user_id: user.staff_id || user.user_id,
+      user_email: user.user.user_email,
+      user_first_name: user.user.staff_first_name || user.user.user_first_name,
+      user_last_name: user.staff_last_name || user.user.user_last_name,
+      staff_role: user.staff_role || 1,
+    };
+
+    const token = jwt.sign(payload, jwtSecret, {
+      expiresIn: "24h",
+    });
+
+    const sendBack = {
+      user_token: token,
+    };
+
+    res.status(200).json({
+      status: "success",
+      message: "User logged in successfully",
+      data: sendBack,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      status: "error",
+      message: "An error occurred during login",
+    });
+  }
+>>>>>>> 699f29c32fbf9e098d946472a8d8e028210e44bf
 }
 
 // Export the functions

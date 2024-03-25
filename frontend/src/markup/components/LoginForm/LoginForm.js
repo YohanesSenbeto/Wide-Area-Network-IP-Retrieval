@@ -18,6 +18,7 @@ function LoginForm() {
     const isAdminRoute = location.pathname.startsWith("/login/admin");
     const isManagerRoute = location.pathname.startsWith("/login/manager");
 
+<<<<<<< HEAD
     // Conditionally render the dropdown menu based on the route
     const renderUserTypeDropdown = () => {
         if (isStaffRoute || isAdminRoute || isManagerRoute) {
@@ -45,6 +46,91 @@ function LoginForm() {
         }
         return null; // Render nothing if not on /login/staff, /login/admin, or /login/manager
     };
+=======
+  // Conditionally render the dropdown menu based on the route
+  const renderUserTypeDropdown = () => {
+    if (isStaffRoute || isAdminRoute || isManagerRoute) {
+      return (
+        <Dropdown>
+          <Dropdown.Toggle variant="secondary" id="dropdown-basic">
+            {userType === "normal" ? "Normal User" : userType}
+          </Dropdown.Toggle>
+          <Dropdown.Menu>
+            <Dropdown.Item onClick={() => setUserType("normal")}>
+              Normal User
+            </Dropdown.Item>
+            <Dropdown.Item onClick={() => setUserType("admin")}>
+              Admin
+            </Dropdown.Item>
+            <Dropdown.Item onClick={() => setUserType("manager")}>
+              Manager
+            </Dropdown.Item>
+            <Dropdown.Item onClick={() => setUserType("staff")}>
+              Staff
+            </Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
+      );
+    }
+    return null; // Render nothing if not on /login/staff, /login/admin, or /login/manager
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    // Handle client-side validations here
+    let valid = true; // Flag
+    // Email validation
+    if (!user_email) {
+      setEmailError("Please enter your email address first");
+      valid = false;
+    } else if (!user_email.includes("@")) {
+      setEmailError("Invalid email format");
+    } else {
+      const regex = /^\S+@\S+\.\S+$/;
+      if (!regex.test(user_email)) {
+        setEmailError("Invalid email format");
+        valid = false;
+      } else {
+        setEmailError("");
+      }
+    }
+    // Password has to be at least 6 characters long
+    if (!user_password || user_password.length < 6) {
+      setPasswordError("Password must be at least 6 characters long");
+      valid = false;
+    } else {
+      setPasswordError("");
+    }
+    if (!valid) {
+      return;
+    }
+    // Handle form submission here
+    const formData = {
+      user_email,
+      user_password,
+      userType,
+    };
+    // Call the service
+    try {
+      const response = await loginService.login(formData);
+
+      console.log(response);
+      if (response.status === "success") {
+        // Save the user in the local storage
+       
+        // Redirect the user to the dashboard
+        navigate("/home");
+      } else {
+        // Show an error message
+        setServerError(response.message);
+      }
+      // Redirect the user to the dashboard
+    } catch (error) {
+      // Handle login error (e.g., display error message)
+      setServerError("Login failed. Please try again.");
+    }
+  };
+>>>>>>> 699f29c32fbf9e098d946472a8d8e028210e44bf
 
     const handleSubmit = async (event) => {
         event.preventDefault();

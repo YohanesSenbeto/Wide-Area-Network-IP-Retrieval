@@ -7,10 +7,15 @@ import "./header.css";
 import getAuth from "../../../util/auth";
 
 function Header(props) {
+<<<<<<< HEAD
     const { isLogged, setIsLogged, employee } = useAuth();
     const [userName, setUserName] = useState(""); // State to store the user's name
     const user = getAuth;
     console.log(user.user_email);
+=======
+  const { isLogged, setIsLogged, staff } = useAuth();
+  const user = getAuth;
+>>>>>>> 699f29c32fbf9e098d946472a8d8e028210e44bf
 
     useEffect(() => {
         // Fetch the user's name when the component mounts

@@ -1,5 +1,11 @@
 // wanIpAdderService.js
+<<<<<<< HEAD
 const api_url = `http://localhost 8000`
+=======
+
+const api_url = process.env.REACT_APP_API_URL;
+//
+>>>>>>> 699f29c32fbf9e098d946472a8d8e028210e44bf
 const addWanIp = async (wanIp) => {
   console.log(wanIp);
   try {
