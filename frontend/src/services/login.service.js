@@ -1,4 +1,5 @@
 const api_url = `http://localhost:8000`;
+//http://34.204.101.218:80
 
 // A function to send the login request to the server
 const logIn = async (formData) => {
@@ -7,6 +8,7 @@ const logIn = async (formData) => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
     };
+
     try {
         console.log("About to send login request");
         console.log(requestOptions.body);

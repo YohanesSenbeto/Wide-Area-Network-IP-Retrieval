@@ -3,13 +3,14 @@ import { Link } from "react-router-dom";
 import logo from "../../../assets/images/logo.png";
 import loginService from "../../../services/login.service";
 import { useAuth } from "../../../Contexts/AuthContext";
-import getAuth from "../../../util/auth";
 import "./header.css";
+import getAuth from "../../../util/auth";
 
 function Header(props) {
     const { isLogged, setIsLogged, employee } = useAuth();
     const [userName, setUserName] = useState(""); // State to store the user's name
     const user = getAuth;
+    console.log(user.user_email);
 
     useEffect(() => {
         // Fetch the user's name when the component mounts
@@ -31,6 +32,7 @@ function Header(props) {
     };
 
     const logOut = () => {
+        loginService.logOut();
         loginService.logOut();
         setIsLogged(false);
     };

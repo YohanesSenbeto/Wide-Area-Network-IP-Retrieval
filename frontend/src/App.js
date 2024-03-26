@@ -1,6 +1,8 @@
+// Import react
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Sidebar from "./markup/components/Sidebar/Sidebar";
+// import Navbar from "./Navbar/Navbar";
 // Import the Routes and Route components from react-router
 import { Routes, Route } from "react-router";
 // Import the page components
@@ -45,8 +47,6 @@ import AddIpAddress from "./markup/pages/admin/AddIpAddress";
 import AddCustomers from "./markup/pages/admin/AddCustomers";
 import Tutorials from "./markup/components/Tutorials/tutorials";
 import AddService from "./markup/pages/admin/AddService";
-import SignupSuccess from "./markup/components/Signup/SignupSuccess";
-
 function App() {
     return (
         <>
@@ -56,6 +56,7 @@ function App() {
                 <Route path="/Register" element={<SignupForm />} />
                 <Route path="/addWanIp" element={<WanIpAdder />} />
                 <Route path="/WanIp" element={<Wanip />} />
+
                 <Route path="/about" element={<About />} />
                 <Route path="/Services" element={<Services />} />
                 <Route path="/Support" element={<Support />} />
@@ -73,8 +74,8 @@ function App() {
                 <Route path="/Success" element={<Success />} />
                 <Route path="/admin/add-ipaddress" element={<AddIpAddress />} />
                 <Route path="/unauthorized" element={<Unauthorized />} />
-
                 {/* // Add the Orders Route  */}
+
                 <Route
                     path="/admin/orders"
                     element={
@@ -103,6 +104,14 @@ function App() {
                         </PrivateAuthRoute>
                     }
                 />
+                {/* 
+          Customers (/admin/customers) - managers and admins
+          Orders (/admin/orders) - Can be accessed by all staffs
+          Add staff (/admin/add-staff) - admins only 
+            - Admin: 3 
+            - Manager: 2 
+            - staff: 1 
+        */}
             </Routes>
             <Footer />
         </>

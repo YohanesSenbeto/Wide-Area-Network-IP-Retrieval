@@ -1,6 +1,9 @@
+// Import the query function from the db.config.js file
 const conn = require("../config/db.config");
+// Import the bcrypt module
 const bcrypt = require("bcryptjs");
 
+// A function to check if user exists in the database
 async function checkIfUserExists(email, userType) {
     let tableName;
 
@@ -14,7 +17,7 @@ async function checkIfUserExists(email, userType) {
             tableName = "users";
     }
 
-    const query = `SELECT * FROM ${tableName} WHERE ${tableName}_email = ?`;
+    const query = `SELECT * FROM ${tableName} WHERE user_email = ?`;
     const rows = await conn.query(query, [email]);
     console.log(rows);
     return rows.length > 0;
@@ -39,6 +42,7 @@ async function getUserData(email, userType) {
     return userData[0]; // Assuming you expect only one user with a given email
 }
 
+// A function to validate user login
 async function validateUserLogin(user_email, user_password, userType) {
     try {
         let tableName, idField, emailField, passwordField;
@@ -89,6 +93,7 @@ async function validateUserLogin(user_email, user_password, userType) {
     }
 }
 
+// A function to get all users
 async function getAllUsers(userType) {
     let tableName;
 
@@ -107,6 +112,7 @@ async function getAllUsers(userType) {
     return rows;
 }
 
+// Export the functions for use in the controller
 module.exports = {
     checkIfUserExists,
     validateUserLogin,

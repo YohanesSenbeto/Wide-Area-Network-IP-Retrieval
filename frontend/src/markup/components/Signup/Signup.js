@@ -3,6 +3,7 @@ import "./signup.css";
 import { useNavigate, useLocation } from "react-router-dom";
 import signupService from "../../../services/signup.service";
 import { signUp, logOut } from "../../../services/signup.service";
+import SignupSuccess from "./Success";
 
 function SignupForm() {
     const navigate = useNavigate();
@@ -95,11 +96,12 @@ function SignupForm() {
                             );
                         }
                         // Redirect the user to the dashboard or homepage
-                        if (location.pathname === "/signup") {
-                            window.location.replace("/login");
-                        } else {
-                            window.location.reload();
+                        if (location.pathname === "/Register") {
+                            window.location.replace("/Success");
                         }
+
+                        navigate("/signupSuccess");
+                        <SignupSuccess />;
                     } else {
                         // Show an error message
                         setServerError(response.message);
@@ -115,15 +117,17 @@ function SignupForm() {
 
     return (
         <section className="contact-section">
-            <div className="auto-container">
-                <div className="contact-title">
-                    <h2>Create a new account</h2>
-                </div>
+            <div className="container">
+                <h4>Create a new account</h4>
+                <div className="contact-title"></div>
                 <div className="row clearfix">
                     <div className="form-column col-lg-7">
                         <div className="inner-column">
                             <div className="contact-form">
-                                <form onSubmit={handleSubmit}>
+                                <form
+                                    className="container"
+                                    onSubmit={handleSubmit}
+                                >
                                     <div className="row clearfix">
                                         <div className="form-group col-md-6">
                                             {serverError && (
@@ -134,6 +138,7 @@ function SignupForm() {
                                                     {serverError}
                                                 </div>
                                             )}
+
                                             <input
                                                 type="text"
                                                 name="first_name"

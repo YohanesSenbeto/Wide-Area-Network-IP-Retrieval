@@ -56,7 +56,6 @@ function LoginForm() {
             valid = false;
         } else if (!user_email.includes("@")) {
             setEmailError("Invalid email format");
-            valid = false;
         } else {
             const regex = /^\S+@\S+\.\S+$/;
             if (!regex.test(user_email)) {
@@ -86,19 +85,25 @@ function LoginForm() {
         try {
             const response = await loginService.logIn(formData);
             if (response.status === "success") {
+                navigate("/");
                 // Save the user in the local storage
                 if (response.data.user_token) {
                     localStorage.setItem("user", JSON.stringify(response.data));
                 }
                 // Redirect the user to the dashboard
-                navigate("/home");
+                if (location.pathname === "/login") {
+                    window.location.replace("/");
+                } else {
+                    window.location.reload();
+                }
             } else {
                 // Show an error message
                 setServerError(response.message);
             }
-        } catch (error) {
-            // Handle login error (e.g., display error message)
-            setServerError("Login failed. Please try again.");
+        } catch (err) {
+            setServerError(
+                "An error has occurred. Please try again later. " + err.message
+            );
         }
     };
 
