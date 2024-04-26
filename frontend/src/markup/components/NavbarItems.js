@@ -1,15 +1,15 @@
 const navbarItems = [
     {
+        title: "Home",
+        link: "/",
+    },
+    {
         title: "About",
         link: "/about",
     },
     {
         title: "Services",
-        link: "/Services",
-    },
-    {
-        title: "Home",
-        link: "/Home",
+        link: "/services",
     },
 ];
 

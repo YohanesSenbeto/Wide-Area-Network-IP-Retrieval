@@ -1,0 +1,47 @@
+/* Login Section */
+.login-section {
+    padding: 50px 0; /* Adjust padding as needed */
+  }
+  
+  /* Login Container */
+  .login-container {
+    max-width: 400px; /* Adjust maximum width as needed */
+    margin: 0 auto; /* Center the container horizontally */
+    background-color: #f9f9f9; /* Background color */
+    border: 1px solid #ddd; /* Border */
+    border-radius: 5px; /* Border radius */
+    padding: 20px; /* Padding */
+  }
+  
+  /* Login Title */
+  .login-title {
+    text-align: center; /* Center the title */
+    margin-bottom: 20px; /* Bottom margin */
+  }
+  
+  /* Login Form */
+  .login-form {
+    margin-top: 20px; /* Top margin */
+  }
+  
+  /* Error Message */
+  .error-message {
+    color: red; /* Error message color */
+    margin-top: 10px; /* Top margin */
+  }
+  
+  /* Form Control */
+  .form-control {
+    margin-bottom: 10px; /* Bottom margin */
+  }
+  
+  /* Button */
+  .btn-primary {
+    width: 100%; /* Full width button */
+  }
+  
+  /* Dropdown Menu */
+  .dropdown-toggle {
+    width: 100%; /* Full width dropdown toggle */
+  }
+  

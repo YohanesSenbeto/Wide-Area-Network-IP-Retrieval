@@ -1,19 +1,19 @@
 /* Logo */
 .logo {
-  width: 100px; /* Adjust the width as needed */
+  width: 50px; /* Adjust the width as needed */
   height: auto; /* Maintain aspect ratio */
   margin-right: 20px; /* Reduce right margin to move the logo left */
-  margin-left: 0; /* Set left margin to 0 to ensure it starts from the left edge */
+  margin-left: 600px; /* Set left margin to ensure it starts from the left edge */
   display: flex;
   align-items: center; /* Align the logo vertically */
 }
 
 /* Navigation */
 .navigation {
-  display:flex;
-  justify-content: center;
+  display: flex;
   font-size: 15px; /* Updated font size */
-  margin-right: 0;
+  justify-content: flex-start; /* Align navigation bars to the left */
+  margin-left: 600px; /* Adjust the margin as needed */
   width: 100%;
 }
 
@@ -22,7 +22,7 @@ nav {
   display: flex;
   font-size: 7px; /* Updated font size */
   align-items: center;
-  justify-content:center;
+  justify-content: center;
   margin-top: 2px;
   padding-top: 0;
   margin-right: 0px;

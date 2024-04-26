@@ -129,7 +129,7 @@ function WanIpRequester() {
                     disabled={loading}
                     className="submit-button"
                 >
-                    {loading ? "Loading..." : "Submit"}
+                    {loading ? "Loading..." : "Generate"}
                 </Button>
             </Form>
             {subnetMask && defaultGateway && (

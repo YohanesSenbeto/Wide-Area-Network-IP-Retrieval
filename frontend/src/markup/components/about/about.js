@@ -19,9 +19,16 @@ function About() {
                         and performance of WAN IP addresses.
                     </p>
                 </div>
-                {/* <div className="banner-container">
-                    <img src={bannerImage} alt="Banner" className="banner-image" />
-                </div> */}
+                {/* Add the embedded video or social media post here */}
+                <div className="video-container">
+                    <iframe
+                        width="560"
+                        height="315"
+                        src="https://www.youtube.com/embed/UoGAksPaUcs"
+                        title="Embedded Video"
+                        allowFullScreen
+                    ></iframe>
+                </div>
                 <p className="last-updated">Last updated 3 mins ago</p>
             </div>
         </div>

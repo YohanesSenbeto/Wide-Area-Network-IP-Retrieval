@@ -1,73 +1,73 @@
+/* Form Container */
 .container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  height: auto;
-}
-
-.form-container {
-  width: 80%; /* Adjust width as needed */
-  margin-top: 20px; /* Add top margin to move up the form */
-}
-
-.form-group {
-  margin-bottom: 10px; /* Decrease bottom margin for form groups */
-}
-
-.form-label {
-  font-size: 14px; /* Decrease font size for labels */
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-
-.form-control,
-.select-control {
-  width: 100%; /* Make form controls full width */
-  padding: 8px; /* Adjust padding for form controls */
-  border-radius: 3px;
-  border: 1px solid #007bff; /* Add border for form controls */
-  font-size: 14px; /* Decrease font size for form controls */
-  text-align: left; /* Align text to the left */
-}
-
-/* Decrease placeholder font size for WAN IP input */
-.form-control::placeholder {
-  font-size: 12px; /* Decrease placeholder font size */
-}
-
-/* Increase placeholder font size for select control */
-.select-control::placeholder {
-  font-size: 14px; /* Increase placeholder font size */
-  width: calc(100% - 16px); /* Adjust width of placeholder */
-  text-align: left; /* Align placeholder text to the left */
-  padding-left: 15px; /* Push placeholder text slightly to the right */
-}
-
-.submit-button {
-  width: 100%; /* Make submit button full width */
-  padding: 10px;
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ccc;
   border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+/* Form Labels */
+.form-label {
+  font-weight: bold;
+}
+
+/* Form Inputs */
+.form-control {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Form Select */
+.select-control {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+/* Submit Button */
+.submit-button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 15px;
   border: none;
-  background-color: #007bff; /* Primary color */
+  border-radius: 5px;
+  background-color: #007bff;
   color: #fff;
+  font-size: 16px;
   cursor: pointer;
 }
 
 .submit-button:hover {
-  background-color: #0056b3; /* Darker shade of primary color on hover */
+  background-color: #0056b3;
 }
 
+/* Error Messages */
+.invalid-feedback {
+  color: red;
+}
+
+/* Result Section */
 .result {
   margin-top: 20px;
 }
 
+/* Video Card */
 .video-card {
   margin-top: 20px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 20px;
 }
 
 .video-card h3 {
-  font-size: 1.2em;
-  margin-bottom: 10px;
-  color: #333;
+  margin-bottom: 15px;
 }

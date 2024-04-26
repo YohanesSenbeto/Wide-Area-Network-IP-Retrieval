@@ -1,7 +1,5 @@
-const api_url = `http://localhost:8000`;
-//http://34.204.101.218:80
+const api_url = `http://44.220.163.30:8000`;
 
-// A function to send the login request to the server
 const logIn = async (formData) => {
     const requestOptions = {
         method: "POST",
@@ -10,25 +8,18 @@ const logIn = async (formData) => {
     };
 
     try {
-        console.log("About to send login request");
-        console.log(requestOptions.body);
         const userType = formData.userType;
-        console.log(userType);
-
         const response = await fetch(
             `${api_url}/api/login/${userType}`,
             requestOptions
         );
-        const responseData = await response.json(); // Parse the response JSON
+        const responseData = await response.json();
 
         if (response.status === 200 && responseData.status === "success") {
-            // Save the user in the local storage
-            console.log(responseData.data);
             if (responseData.data.user_token) {
                 localStorage.setItem("user", JSON.stringify(responseData.data));
             }
-
-            return responseData; // Return the parsed response data
+            return responseData;
         } else {
             throw new Error(responseData.message || "Login failed");
         }
@@ -38,13 +29,34 @@ const logIn = async (formData) => {
     }
 };
 
-// A function to log out the user
 const logOut = () => {
     localStorage.removeItem("user");
 };
 
-// Export the functions
+const getUserData = async () => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (user && user.user_token) {
+        // Make a request to fetch user data based on user token
+        const response = await fetch(`${api_url}/api/userData`, {
+            method: "GET",
+            headers: {
+                Authorization: `Bearer ${user.user_token}`,
+                "Content-Type": "application/json",
+            },
+        });
+        const responseData = await response.json();
+        if (response.status === 200 && responseData.status === "success") {
+            return responseData.data;
+        } else {
+            throw new Error(responseData.message || "Error fetching user data");
+        }
+    } else {
+        throw new Error("User not logged in");
+    }
+};
+
 module.exports = {
     logIn,
     logOut,
+    getUserData,
 };

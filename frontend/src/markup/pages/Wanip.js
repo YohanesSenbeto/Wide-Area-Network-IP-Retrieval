@@ -6,7 +6,7 @@ function Wanip() {
     return (
         <div className="wanip-container">
             <div className="wanip-header">
-                <h4>Retrieve Your WAN IP Information</h4>
+                {/* <h4 className="h4">Retrieve Your WAN IP Information</h4> */}
             </div>
             <div className="wanip-form">
                 <WanIpRequester />

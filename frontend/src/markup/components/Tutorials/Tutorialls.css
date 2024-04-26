@@ -1,4 +1,22 @@
-.video-card{
-    width: 50%;
-    height: auto;
+/* videoStyles.css */
+
+/* Style for the container of each video frame */
+.video-card {
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Style for the title of each video */
+.video-card h3 {
+    margin-top: 0;
+}
+
+/* Responsive styling for the iframe */
+.video-card iframe {
+    width: 50%; /* Adjust width as needed */
+    height: 400px; /* Maintain aspect ratio */
+    border: none; /* Remove default iframe border */
 }

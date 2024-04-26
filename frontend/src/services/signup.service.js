@@ -1,4 +1,4 @@
-const api_url = `http://localhost:8000`;
+const api_url = `http://44.220.163.30:8000`;
 // A function to send the signup request to the server
 export const signUp = async (formData) => {
     const requestOptions = {

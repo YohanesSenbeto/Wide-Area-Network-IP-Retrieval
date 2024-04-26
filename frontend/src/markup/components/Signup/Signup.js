@@ -1,90 +1,91 @@
 import React, { useState } from "react";
-import "./signup.css";
 import { useNavigate, useLocation } from "react-router-dom";
-import signupService from "../../../services/signup.service";
-import { signUp, logOut } from "../../../services/signup.service";
-import SignupSuccess from "./Success";
+import { signUp } from "../../../services/signup.service";
+import "./signup.css";
 
 function SignupForm() {
     const navigate = useNavigate();
     const location = useLocation();
-    const [first_name, setFirstName] = useState("");
-    const [last_name, setLastName] = useState("");
-    const [user_email, setEmail] = useState("");
-    const [user_password, setPassword] = useState("");
-    const [user_city, setCity] = useState("");
-    const [user_subcity, setSubcity] = useState("");
-    const [user_phone, setPhone] = useState("");
-    const [firstNameError, setFirstNameError] = useState("");
-    const [lastNameError, setLastNameError] = useState("");
-    const [emailError, setEmailError] = useState("");
-    const [passwordError, setPasswordError] = useState("");
-    const [serverError, setServerError] = useState("");
+    const [formData, setFormData] = useState({
+        first_name: "",
+        last_name: "",
+        user_email: "",
+        user_password: "",
+        user_city: "",
+        user_subcity: "",
+        user_phone: "",
+    });
+    const [formErrors, setFormErrors] = useState({
+        first_name: "",
+        last_name: "",
+        user_email: "",
+        user_password: "",
+        serverError: "",
+    });
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({
+            ...formData,
+            [name]: value,
+        });
+    };
 
     const handleSubmit = async (event) => {
         event.preventDefault();
 
         // Handle client-side validations here
         let valid = true; // Flag
+        const errors = { ...formErrors };
 
         // First name validation
-        if (!first_name) {
-            setFirstNameError("Please enter your first name");
+        if (!formData.first_name) {
+            errors.first_name = "Please enter your first name";
             valid = false;
         } else {
-            setFirstNameError("");
+            errors.first_name = "";
         }
 
         // Last name validation
-        if (!last_name) {
-            setLastNameError("Please enter your last name");
+        if (!formData.last_name) {
+            errors.last_name = "Please enter your last name";
             valid = false;
         } else {
-            setLastNameError("");
+            errors.last_name = "";
         }
 
         // Email validation
-        if (!user_email) {
-            setEmailError("Please enter your email address");
+        if (!formData.user_email) {
+            errors.user_email = "Please enter your email address";
             valid = false;
-        } else if (!user_email.includes("@")) {
-            setEmailError("Invalid email format");
+        } else if (!formData.user_email.includes("@")) {
+            errors.user_email = "Invalid email format";
             valid = false;
         } else {
             const regex = /^\S+@\S+\.\S+$/;
-            if (!regex.test(user_email)) {
-                setEmailError("Invalid email format");
+            if (!regex.test(formData.user_email)) {
+                errors.user_email = "Invalid email format";
                 valid = false;
             } else {
-                setEmailError("");
+                errors.user_email = "";
             }
         }
 
         // Password validation (must be at least 6 characters long)
-        if (!user_password || user_password.length < 6) {
-            setPasswordError("Password must be at least 6 characters long");
+        if (!formData.user_password || formData.user_password.length < 6) {
+            errors.user_password =
+                "Password must be at least 6 characters long";
             valid = false;
         } else {
-            setPasswordError("");
+            errors.user_password = "";
         }
+
+        setFormErrors(errors);
 
         // Handle form submission here
         if (valid) {
-            const formData = {
-                first_name,
-                last_name,
-                user_email,
-                user_password,
-                user_city,
-                user_subcity,
-                user_phone,
-            };
-            console.log(formData);
-
-            // Call the service for user signup
-            const signupUser = signUp(formData);
-
-            signupUser
+            // Call the signUp function from the service
+            signUp(formData)
                 .then((response) => response.json())
                 .then((response) => {
                     if (response.status === "success") {
@@ -97,199 +98,140 @@ function SignupForm() {
                         }
                         // Redirect the user to the dashboard or homepage
                         if (location.pathname === "/Register") {
-                            window.location.replace("/Success");
+                            navigate("/Success");
+                        } else {
+                            navigate("/signupSuccess");
                         }
-
-                        navigate("/signupSuccess");
-                        <SignupSuccess />;
                     } else {
                         // Show an error message
-                        setServerError(response.message);
+                        setFormErrors({
+                            ...errors,
+                            serverError: response.message,
+                        });
                     }
                 })
                 .catch((err) => {
-                    setServerError(
-                        "An error has occurred. Please try again later." + err
-                    );
+                    setFormErrors({
+                        ...errors,
+                        serverError:
+                            "An error has occurred. Please try again later." +
+                            err,
+                    });
                 });
         }
     };
 
     return (
-        <section className="contact-section">
+        <section className="signup-section">
+            <h4 className="signup-title">Create a new account</h4>
             <div className="container">
-                <h4>Create a new account</h4>
-                <div className="contact-title"></div>
-                <div className="row clearfix">
-                    <div className="form-column col-lg-7">
-                        <div className="inner-column">
-                            <div className="contact-form">
-                                <form
-                                    className="container"
-                                    onSubmit={handleSubmit}
-                                >
-                                    <div className="row clearfix">
-                                        <div className="form-group col-md-6">
-                                            {serverError && (
-                                                <div
-                                                    className="validation-error"
-                                                    role="alert"
-                                                >
-                                                    {serverError}
-                                                </div>
-                                            )}
-
-                                            <input
-                                                type="text"
-                                                name="first_name"
-                                                value={first_name}
-                                                onChange={(event) =>
-                                                    setFirstName(
-                                                        event.target.value
-                                                    )
-                                                }
-                                                placeholder="First Name"
-                                            />
-                                            {firstNameError && (
-                                                <div
-                                                    className="validation-error"
-                                                    role="alert"
-                                                >
-                                                    {firstNameError}
-                                                </div>
-                                            )}
-                                        </div>
-                                        <div className="form-group col-md-6">
-                                            {serverError && (
-                                                <div
-                                                    className="validation-error"
-                                                    role="alert"
-                                                >
-                                                    {serverError}
-                                                </div>
-                                            )}
-                                            <input
-                                                type="text"
-                                                name="last_name"
-                                                value={last_name}
-                                                onChange={(event) =>
-                                                    setLastName(
-                                                        event.target.value
-                                                    )
-                                                }
-                                                placeholder="Last Name"
-                                            />
-                                            {lastNameError && (
-                                                <div
-                                                    className="validation-error"
-                                                    role="alert"
-                                                >
-                                                    {lastNameError}
-                                                </div>
-                                            )}
-                                        </div>
-                                        <div className=" form-group col-md-12">
-                                            {serverError && (
-                                                <div
-                                                    className="validation-error"
-                                                    role="alert"
-                                                >
-                                                    {serverError}
-                                                </div>
-                                            )}
-                                            <input
-                                                type="email"
-                                                name="user_email"
-                                                value={user_email}
-                                                onChange={(event) =>
-                                                    setEmail(event.target.value)
-                                                }
-                                                placeholder="Email"
-                                            />
-                                            {emailError && (
-                                                <div
-                                                    className="validation-error"
-                                                    role="alert"
-                                                >
-                                                    {emailError}
-                                                </div>
-                                            )}
-                                        </div>
-
-                                        <div className="form-group col-md-12">
-                                            <input
-                                                type="password"
-                                                name="user_password"
-                                                value={user_password}
-                                                onChange={(event) =>
-                                                    setPassword(
-                                                        event.target.value
-                                                    )
-                                                }
-                                                placeholder="Password"
-                                            />
-                                            {passwordError && (
-                                                <div
-                                                    className="validation-error"
-                                                    role="alert"
-                                                >
-                                                    {passwordError}
-                                                </div>
-                                            )}
-                                        </div>
-
-                                        <div className="form-group col-md-12">
-                                            <input
-                                                type="text"
-                                                name="user_city"
-                                                value={user_city}
-                                                onChange={(event) =>
-                                                    setCity(event.target.value)
-                                                }
-                                                placeholder="City (optional)"
-                                            />
-                                        </div>
-
-                                        <div className="form-group col-md-12">
-                                            <input
-                                                type="text"
-                                                name="user_subcity"
-                                                value={user_subcity}
-                                                onChange={(event) =>
-                                                    setSubcity(
-                                                        event.target.value
-                                                    )
-                                                }
-                                                placeholder="Subcity (optional)"
-                                            />
-                                        </div>
-
-                                        <div className="form-group col-md-12">
-                                            <input
-                                                type="tel"
-                                                name="user_phone"
-                                                value={user_phone}
-                                                onChange={(event) =>
-                                                    setPhone(event.target.value)
-                                                }
-                                                placeholder="Phone Number (optional)"
-                                            />
-                                        </div>
-
-                                        <div className="form-group col-md-12">
-                                            <button
-                                                className="theme-btn btn-style-one"
-                                                type="submit"
-                                                data-loading-text="Please wait..."
-                                            >
-                                                <span>Sign Up</span>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
+                <div className="signup-form">
+                    <form onSubmit={handleSubmit}>
+                        <div className="form-group">
+                            {formErrors.serverError && (
+                                <div className="validation-error">
+                                    {formErrors.serverError}
+                                </div>
+                            )}
+                            <input
+                                type="text"
+                                name="first_name"
+                                value={formData.first_name}
+                                onChange={handleChange}
+                                className="form-control"
+                                placeholder="First Name"
+                            />
+                            {formErrors.first_name && (
+                                <div className="validation-error">
+                                    {formErrors.first_name}
+                                </div>
+                            )}
                         </div>
-                    </div>
+                        <div className="form-group">
+                            <input
+                                type="text"
+                                name="last_name"
+                                value={formData.last_name}
+                                onChange={handleChange}
+                                className="form-control"
+                                placeholder="Last Name"
+                            />
+                            {formErrors.last_name && (
+                                <div className="validation-error">
+                                    {formErrors.last_name}
+                                </div>
+                            )}
+                        </div>
+                        <div className="form-group">
+                            <input
+                                type="email"
+                                name="user_email"
+                                value={formData.user_email}
+                                onChange={handleChange}
+                                className="form-control"
+                                placeholder="Email"
+                            />
+                            {formErrors.user_email && (
+                                <div className="validation-error">
+                                    {formErrors.user_email}
+                                </div>
+                            )}
+                        </div>
+                        <div className="form-group">
+                            <input
+                                type="password"
+                                name="user_password"
+                                value={formData.user_password}
+                                onChange={handleChange}
+                                className="form-control"
+                                placeholder="Password"
+                                autoComplete="current-password"
+                            />
+                            {formErrors.user_password && (
+                                <div className="validation-error">
+                                    {formErrors.user_password}
+                                </div>
+                            )}
+                        </div>
+                        <div className="form-group">
+                            <input
+                                type="text"
+                                name="user_city"
+                                value={formData.user_city}
+                                onChange={handleChange}
+                                className="form-control"
+                                placeholder="City (optional)"
+                            />
+                        </div>
+                        <div className="form-group">
+                            <input
+                                type="text"
+                                name="user_subcity"
+                                value={formData.user_subcity}
+                                onChange={handleChange}
+                                className="form-control"
+                                placeholder="Subcity (optional)"
+                            />
+                        </div>
+                        <div className="form-group">
+                            <input
+                                type="tel"
+                                name="user_phone"
+                                value={formData.user_phone}
+                                onChange={handleChange}
+                                className="form-control"
+                                placeholder="Phone Number (optional)"
+                            />
+                        </div>
+                        <div className="form-group">
+                            <button
+                                className="btn btn-primary btn-block"
+                                type="submit"
+                            >
+                                Sign Up
+                            </button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </section>

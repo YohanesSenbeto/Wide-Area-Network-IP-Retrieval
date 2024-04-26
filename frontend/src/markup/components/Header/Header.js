@@ -1,231 +1,316 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import logo from "../../../assets/images/logo.png";
 import loginService from "../../../services/login.service";
 import { useAuth } from "../../../Contexts/AuthContext";
-import "./header.css";
-import getAuth from "../../../util/auth";
 
-function Header(props) {
-    const { isLogged, setIsLogged, employee } = useAuth();
-    const [userName, setUserName] = useState(""); // State to store the user's name
-    const user = getAuth;
-    console.log(user.user_email);
+// ActiveIndicator component to display the yellow rectangle around the active navigation item
+const ActiveIndicator = ({ activeNavItem }) => {
+    const [indicatorStyle, setIndicatorStyle] = useState({});
 
     useEffect(() => {
-        // Fetch the user's name when the component mounts
-        fetchUserName();
-    }, [isLogged]); // Fetch the user's name when the login status changes
-
-    const fetchUserName = async () => {
-        try {
-            if (isLogged) {
-                // If the user is logged in, fetch their name
-                const userData = await loginService.getUserData(); // Assuming there's a function to fetch user data from the server
-                setUserName(userData.name); // Set the user's name in the state
-            } else {
-                setUserName(""); // Clear the user's name if not logged in
-            }
-        } catch (error) {
-            console.error("Error fetching user data:", error);
+        const activeElement = document.querySelector(
+            `[data-nav="${activeNavItem}"]`
+        );
+        if (activeElement) {
+            const style = {
+                left: activeElement.offsetLeft + "px",
+                width: activeElement.offsetWidth + "px",
+            };
+            setIndicatorStyle(style);
         }
-    };
+    }, [activeNavItem]);
 
-    const logOut = () => {
-        loginService.logOut();
+    return (
+        <div
+            className="active-indicator bg-warning"
+            style={indicatorStyle}
+        ></div>
+    );
+};
+
+function Header(props) {
+    const { isLogged, setIsLogged } = useAuth();
+    const [userName, setUserName] = useState("");
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [logoutTimer, setLogoutTimer] = useState(null);
+    const [activeNavItem, setActiveNavItem] = useState("");
+
+    useEffect(() => {
+        const fetchUserName = async () => {
+            try {
+                if (isLogged) {
+                    const userData = await loginService.getUserData();
+                    setUserName(userData.name.split(" ")[0]);
+                } else {
+                    setUserName("");
+                }
+            } catch (error) {
+                console.error("Error fetching user data:", error);
+            }
+        };
+
+        const startLogoutTimer = () => {
+            clearInterval(logoutTimer);
+            const timer = setInterval(() => {
+                // Implement your logic to decrease timer value
+                // For example, decrementing the timer every second
+            }, 1000);
+            setLogoutTimer(timer);
+        };
+
+        fetchUserName();
+        startLogoutTimer();
+
+        return () => {
+            clearInterval(logoutTimer);
+        };
+    }, [isLogged, logoutTimer]);
+
+    const handleLogout = () => {
         loginService.logOut();
         setIsLogged(false);
+        clearInterval(logoutTimer);
     };
 
-    const [isMenuOpen, setIsMenuOpen] = useState(false); // State to track burger menu open/close
-
     const toggleMenu = () => {
-        setIsMenuOpen(!isMenuOpen); // Toggle the menu state
+        setIsMenuOpen(!isMenuOpen);
     };
 
     return (
-        <div>
-            <div className="nav-container">
-                <div className="header-top">
-                    <div className="auto-container">
-                        <div className="inner-container">
-                            <div className="left-column">
-                                <div className="text">
-                                    Retrieve Your WAN IP information easily
-                                </div>
-                                <div className="office-hour">
-                                    You can get Support from Monday - Sunday
-                                    24/7 hrs.
-                                </div>
-                            </div>
-                            <div className="right-column">
-                                {isLogged ? (
-                                    <div className="Link-btn">
-                                        <div className="phone-number">
-                                            <strong>
-                                                Welcome {user?.user_email}
-                                            </strong>
-                                        </div>
-                                    </div>
-                                ) : (
-                                    <div className="phone-number"></div>
-                                )}
-                            </div>
+        <header className="header">
+            <div className="container-fluid">
+                <div className="row align-items-center">
+                    <div className="col-lg-6">
+                        <div className="office-hour">
+                            {/* You can get Support from Monday - Sunday 24/7 hrs. */}
                         </div>
                     </div>
-                </div>
-                <div className="auto-container">
-                    <div className="inner-container">
-                        <div className="logo-box"></div>
-                        <div className="right-column">
-                            <div className="nav-outer">
-                                <div
-                                    className="mobile-nav-toggler"
-                                    onClick={toggleMenu}
-                                >
-                                    <img
-                                        src="assets/images/icons/icon-bar.png"
-                                        alt=""
-                                    />
-                                </div>
-                                <nav className="main-menu navbar-expand-md navbar-divght">
-                                    <div className="logo">
-                                        <Link to="/">
-                                            <img src={logo} alt="" />
-                                        </Link>
-                                    </div>
-                                    <div
-                                        className={`collapse navbar-collapse show clearfix ${
-                                            isMenuOpen ? "active" : ""
-                                        }`}
-                                        id="navbarSupportedContent"
-                                    >
-                                        <ul className="navigation">
-                                            <li className="Link-btn">
-                                                <Link to="/">Home</Link>
-                                            </li>
-                                            <li className="Link-btn">
-                                                <Link to="/about">
-                                                    About Us
-                                                </Link>
-                                            </li>
-                                            <li className="Link-btn">
-                                                <Link to="/services">
-                                                    Services
-                                                </Link>
-                                            </li>
-                                            <li className="Link-btn">
-                                                <Link to="/wanip">WAN IP</Link>
-                                            </li>
-                                            <li className="Link-btn">
-                                                <Link to="/blog">Blog</Link>
-                                            </li>
-                                            <li className="Link-btn">
-                                                <Link to="/tutorials">
-                                                    Tutorials
-                                                </Link>
-                                            </li>
-                                            <li className="Link-btn">
-                                                <Link to="/support">
-                                                    Support
-                                                </Link>
-                                            </li>
-                                            <li className="Link-btn">
-                                                <Link to="/contact">
-                                                    Contact
-                                                </Link>
-                                            </li>
-                                            <li className="Link-btn">
-                                                <Link to="/Register">
-                                                    SignUp
-                                                </Link>
-                                            </li>
-                                            <li className="Link-btn">
-                                                {isLogged ? (
-                                                    <Link
-                                                        to="/"
-                                                        onClick={logOut}
-                                                    >
-                                                        Log out
-                                                    </Link>
-                                                ) : (
-                                                    <Link to="/login">
-                                                        Login
-                                                    </Link>
-                                                )}
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </nav>
+                    <div className="col-lg-6">
+                        <div className="header-right text-right">
+                            <div
+                                className={`menu-toggle ${
+                                    isMenuOpen ? "active" : ""
+                                }`}
+                                onClick={toggleMenu}
+                            >
+                                <span className="hamburger-bar"></span>
+                                <span className="hamburger-bar"></span>
+                                <span className="hamburger-bar"></span>
                             </div>
+                            {isLogged && (
+                                <div className="user-panel">
+                                    <div className="phone-number">
+                                        Welcome: <strong>{userName}</strong>
+                                    </div>
+                                </div>
+                            )}
                         </div>
                     </div>
                 </div>
             </div>
-            {/* Burger Menu */}
-            <div className={`mobile-menu ${isMenuOpen ? "active" : ""}`}>
-                <div className="menu-backdrop" onClick={toggleMenu}></div>
-                <div className="close-btn" onClick={toggleMenu}>
-                    <span className="icon flaticon-remove"></span>
-                </div>
-                <nav className="menu-box">
-                    <div className="nav-logo">
-                        <Link to="/">
-                            <img
-                                src="assets/images/logo-two.png"
-                                alt=""
-                                title=""
-                            />
-                        </Link>
-                    </div>
-                    <div className="menu-outer">
-                        {/* Add your menu items here */}
-                        <ul>
-                            <li>
-                                <Link to="/">Home</Link>
+            <nav
+                className={`main-menu ${
+                    isMenuOpen ? "active" : ""
+                } navbar navbar-expand-lg navbar-light bg-primary`}
+            >
+                <div className="container-fluid">
+                    <button
+                        className="navbar-toggler"
+                        type="button"
+                        data-toggle="collapse"
+                        data-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation"
+                    >
+                        <span className="navbar-toggler-icon"></span>
+                    </button>
+                    <div
+                        className={`collapse navbar-collapse ${
+                            isMenuOpen ? "show" : ""
+                        }`}
+                        id="navbarSupportedContent"
+                    >
+                        <ul className="navbar-nav ml-auto">
+                            <li className="nav-item">
+                                <Link
+                                    to="/"
+                                    className={`nav-link text-white ${
+                                        activeNavItem === "/" ? "active" : ""
+                                    }`}
+                                    data-nav="/"
+                                    onClick={() => setActiveNavItem("/")}
+                                >
+                                    Home
+                                </Link>
                             </li>
-                            <li>
-                                <Link to="/about">About Us</Link>
+                            <li className="nav-item">
+                                <Link
+                                    to="/about"
+                                    className={`nav-link text-white ${
+                                        activeNavItem === "/about"
+                                            ? "active"
+                                            : ""
+                                    }`}
+                                    data-nav="/about"
+                                    onClick={() => setActiveNavItem("/about")}
+                                >
+                                    About Us
+                                </Link>
                             </li>
-                            <li>
-                                <Link to="/services">Services</Link>
+                            <li className="nav-item">
+                                <Link
+                                    to="/services"
+                                    className={`nav-link text-white ${
+                                        activeNavItem === "/services"
+                                            ? "active"
+                                            : ""
+                                    }`}
+                                    data-nav="/services"
+                                    onClick={() =>
+                                        setActiveNavItem("/services")
+                                    }
+                                >
+                                    Services
+                                </Link>
                             </li>
-                            <li>
-                                <Link to="/wanip">WAN IP</Link>
-                            </li>
-                            <li>
-                                <Link to="/blog">Blog</Link>
-                            </li>
-                            <li>
-                                <Link to="/tutorials">Tutorials</Link>
-                            </li>
-                            <li>
-                                <Link to="/support">Support</Link>
-                            </li>
-                            <li>
-                                <Link to="/contact">Contact</Link>
-                            </li>
-                            <li>
-                                <Link to="/Register">SignUp</Link>
-                            </li>
-                            <li>
-                                {isLogged ? (
-                                    <Link to="/" onClick={logOut}>
-                                        Log out
+                            {isLogged && (
+                                <>
+                                    <li className="nav-item">
+                                        <Link
+                                            to="/wanip"
+                                            className={`nav-link text-white ${
+                                                activeNavItem === "/wanip"
+                                                    ? "active"
+                                                    : ""
+                                            }`}
+                                            data-nav="/wanip"
+                                            onClick={() =>
+                                                setActiveNavItem("/wanip")
+                                            }
+                                        >
+                                            WAN IP
+                                        </Link>
+                                    </li>
+                                    <li className="nav-item">
+                                        <Link
+                                            to="/blog"
+                                            className={`nav-link text-white ${
+                                                activeNavItem === "/blog"
+                                                    ? "active"
+                                                    : ""
+                                            }`}
+                                            data-nav="/blog"
+                                            onClick={() =>
+                                                setActiveNavItem("/blog")
+                                            }
+                                        >
+                                            Blog
+                                        </Link>
+                                    </li>
+                                    <li className="nav-item">
+                                        <Link
+                                            to="/tutorials"
+                                            className={`nav-link text-white ${
+                                                activeNavItem === "/tutorials"
+                                                    ? "active"
+                                                    : ""
+                                            }`}
+                                            data-nav="/tutorials"
+                                            onClick={() =>
+                                                setActiveNavItem("/tutorials")
+                                            }
+                                        >
+                                            Tutorials
+                                        </Link>
+                                    </li>
+                                    <li className="nav-item">
+                                        <Link
+                                            to="/support"
+                                            className={`nav-link text-white ${
+                                                activeNavItem === "/support"
+                                                    ? "active"
+                                                    : ""
+                                            }`}
+                                            data-nav="/support"
+                                            onClick={() =>
+                                                setActiveNavItem("/support")
+                                            }
+                                        >
+                                            Support
+                                        </Link>
+                                    </li>
+                                    <li className="nav-item">
+                                        <Link
+                                            to="/contact"
+                                            className={`nav-link text-white ${
+                                                activeNavItem === "/contact"
+                                                    ? "active"
+                                                    : ""
+                                            }`}
+                                            data-nav="/contact"
+                                            onClick={() =>
+                                                setActiveNavItem("/contact")
+                                            }
+                                        >
+                                            Contact
+                                        </Link>
+                                    </li>
+                                </>
+                            )}
+                            {!isLogged && (
+                                <li className="nav-item">
+                                    <Link
+                                        to="/register"
+                                        className={`nav-link text-white ${
+                                            activeNavItem === "/register"
+                                                ? "active"
+                                                : ""
+                                        }`}
+                                        data-nav="/register"
+                                        onClick={() =>
+                                            setActiveNavItem("/register")
+                                        }
+                                    >
+                                        SignUp
                                     </Link>
-                                ) : (
-                                    <Link to="/login">Login</Link>
-                                )}
-                            </li>
+                                </li>
+                            )}
+                            {!isLogged && (
+                                <li className="nav-item">
+                                    <Link
+                                        to="/login"
+                                        className={`nav-link text-white ${
+                                            activeNavItem === "/login"
+                                                ? "active"
+                                                : ""
+                                        }`}
+                                        data-nav="/login"
+                                        onClick={() =>
+                                            setActiveNavItem("/login")
+                                        }
+                                    >
+                                        Login
+                                    </Link>
+                                </li>
+                            )}
+                            {isLogged && (
+                                <li className="nav-item">
+                                    <button
+                                        className="nav-link btn btn-outline-danger text-white"
+                                        onClick={handleLogout}
+                                    >
+                                        Logout
+                                    </button>
+                                </li>
+                            )}
                         </ul>
                     </div>
-                </nav>
-            </div>
-            <div className="nav-overlay">
-                <div className="cursor"></div>
-                <div className="cursor-follower"></div>
-            </div>
-        </div>
+                </div>
+            </nav>
+            {/* Render the ActiveIndicator component */}
+            <ActiveIndicator activeNavItem={activeNavItem} />
+        </header>
     );
 }
 

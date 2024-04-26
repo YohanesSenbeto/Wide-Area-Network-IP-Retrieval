@@ -1,20 +1,39 @@
-import React from 'react'
+import React from "react";
+import "./Tutorialls.css"; // Import the CSS file for styling
 
-export default function Tutorials() {
-  return (
-    <div>
+// Reusable VideoFrame component
+const VideoFrame = ({ title, src }) => {
+    return (
         <div className="video-card">
-              <h3>Tutorial Video</h3>
-              <iframe
-                width="60%"
-                height="450"
-                src={"https://www.youtube.com/embed/UoGAksPaUcs?si=2RVpsK7D51MdAnUf"}
-                title="Router Tutorial Video"
-                frameBorder="0"
+            <h3>{title}</h3>
+            <iframe
+                src={src}
+                title={title}
+                frameBorder="10"
                 allowFullScreen
-              ></iframe>
-            </div>
-      
-    </div>
-  )
-}
+            ></iframe>
+        </div>
+    );
+};
+
+// Tutorials component using VideoFrame
+const Tutorials = () => {
+    return (
+        <div>
+            <VideoFrame
+                title="How to configure CNCR GPON Modem Tips"
+                src="https://www.youtube.com/embed/XNnMhDhkgO0"
+            />
+            <VideoFrame
+                title="How to Configure Data or VPN in the F660 ZTE GPON Router"
+                src="https://www.youtube.com/embed/-MgHFs3GTDA"
+            />
+            <VideoFrame
+                title="How to Configure GPON ONT TG 2212 model Router Configuration"
+                src="https://www.youtube.com/embed/UoGAksPaUcs"
+            />
+        </div>
+    );
+};
+
+export default Tutorials;

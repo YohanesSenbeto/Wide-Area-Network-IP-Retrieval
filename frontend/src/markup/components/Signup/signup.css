@@ -1,82 +1,58 @@
-.containers {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  margin: 0 auto; /* Center the container horizontally */
-  margin: 0 auto; /* Center the container vertically */
-  margin-left: 100px;
-  margin-right: 100px;
-
+/* Signup Section */
+.signup-section {
+  padding: 50px;
+  font-family: 'Times New Roman', Times, serif;
 }
 
-.contact-section {
-  justify-content: center;
-  align-items: center;
-  width: auto; /* Adjust as needed */
-  margin: 0 auto; /* Center the container horizontally */ 
+/* Signup Container */
+.container {
+  max-width: 500px; /* Adjust maximum width as needed */
+  margin: 0 auto;
 }
-.h4{
+
+/* Signup Title */
+.signup-title {
   text-align: center;
-  margin-bottom: 1px;
-  font-size: 30px;
-}
-.form-group{
-}
-
-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: red;
 }
 
-label {
-  margin-top: 20px; /* Adjust margin-top */
-  display: block;
-  margin-bottom: 10px;
-  font-size: 1.2em;
-  font-weight: bold;
+/* Form Group */
+.form-group {
+  margin-bottom: 20px;
 }
 
-input[type="submit"] {
-  width: 50%;
-  padding: 10px;
-  border-radius: 5px;
-  border: none;
-  margin-bottom: 10px; /* Adjust margin-bottom */
-}
-
+/* Input Fields */
 input[type="text"],
-input[type="number"],
 input[type="email"],
-input[type="tel"],
-input[type="password"] {
+input[type="password"],
+input[type="tel"] {
   width: 100%;
-  height: 30px;
-  padding: 5px;
-  border-radius: 3px;
-  border: none;
-  box-shadow: 0 0 1px 1px rgb(71, 69, 69);
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
 }
 
-input[type="submit"] {
+/* Error Message */
+.validation-error {
+  color: red;
+  margin-top: 5px;
+}
+
+/* Submit Button */
+.theme-btn {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
   color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
   cursor: pointer;
 }
 
-input[type="submit"]:hover {
-  background-color: #FF9800;
-}
-
-.validation-error {
-  color: #f00;
-}
-
-input::placeholder {
-  font-size: 20px; /* Adjust placeholder font size */
-  color: #000;
-  font-family: Arial, Helvetica, sans-serif;
-  text-decoration: none;
-  font-style:oblique;
+.theme-btn:hover {
+  background-color: #0056b3;
 }

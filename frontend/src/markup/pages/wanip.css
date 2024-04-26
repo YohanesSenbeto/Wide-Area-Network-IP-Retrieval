@@ -1,27 +1,75 @@
-.wanip-container {
-    max-width: 500px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid;
-    border-radius: 4px;
-    background-color: #f9f9f9;
-  }
-  
-  .wanip-header {
-    text-align: center;
-    margin-bottom: 1px;
-  }
-  
-  .wanip-header h4 {
-    color: #333;
-  }
-  
-  .wanip-form {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  /* Style the form elements as needed */
-  
+/* Form Container */
+.wanip-form-container {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Form Header */
+.wanip-form-header {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #333;
+}
+
+/* Form Group */
+.wanip-form-group {
+  margin-bottom: 20px;
+}
+
+/* Form Label */
+.wanip-form-label {
+  font-weight: bold;
+}
+
+/* Input Field */
+.wanip-form-input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Select Field */
+.wanip-form-select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Submit Button */
+.wanip-submit-btn {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.wanip-submit-btn:hover {
+  background-color: #0056b3;
+}
+
+/* Result Section */
+.wanip-result {
+  margin-top: 20px;
+}
+
+/* Video Card */
+.wanip-video-card {
+  margin-top: 20px;
+}
+
+.wanip-video-card h3 {
+  font-size: 1.2em;
+  margin-bottom: 10px;
+  color: #333;
+}
