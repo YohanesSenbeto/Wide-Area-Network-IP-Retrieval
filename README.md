@@ -46,26 +46,7 @@ Set up the dev database locally
       - https://dev.mysql.com/downloads/installer/
       (If you have MAMP already installed, you can use that as well)
 
-    - Create a new database and add user to the database
-      username: demoapp ? So554Dgteb766@!!
-      password: demoapp
-      database name: demoapp
-
-    - Let's desing abd create the tables we need to add employee
-      - Let's just simplify it to the max and create a single table with the following fields in it.
-        Table Name: employee_test
-          Fields:
-            - id (int, auto increment, primary key)
-            - first_name (varchar)
-            - last_name (varchar)
-            - email (varchar, unique)
-            - password (varchar)
-
-      - We can create the above tables manually on our database
-        - The better approach is to write SQL script to create the tables automatically when we run the script
-        * We will do that later once we are done with this test pages
-
-      -- Create the tables --
+    -
 
 Set up the Backend
 
@@ -113,92 +94,14 @@ Set up the Backend
             - We are restricted by the HTTP protocol. Meaning, we can only send and recieve data in the form of text.
             - The server should be programed to understand the text we send to it and send us back the data we need. Meaning, it is our (Backend developer's) responsibility to write the code that handles the request
 
-          - API endpoint documentations for our test pages
-            - Add employee
-              - Route chosen: /add-employee
-                - (This path could have been anything. It is upto us to choose path name that describes what we want the request to do)
-              - Request Method: POST
-              - Request Format: JSON
-              - Request Sample: JSON
-              {
-                "first_name": "John",
-                "last_name": "Doe",
-                "email": "joe@gmail.com",
-                "password": "123456"
-              }
-              - Response Format: JSON
-              - Response Sample: JSON
-                {
-                  status: 'success',
-                  message: 'Employee added successfully'
-                }
-
-            - Log in
-              - Route chosen: /login
-              - Request Method: POST
-              - Request Format: JSON
-              - Request Sample: JSON
-                {
-                  "email": "joe@gmail.com",
-                  "password": "123456"
-                }
-              - Response Format: JSON
-              - Response Sample: JSON
-                {
-                  status: 'success',
-                  message: 'Employee logged in successfully',
-                }
-
-        - Let us now develope the endpoint handlers
-          - Route: /add-employee
-            // Post request handler to add a new employee to the database
-            - Write the sql query
-              - To get the values from the request body, we need to use the express.json() middleware to parse the request body
-            - Execute the query
-            - Send the response back  (Success or Error)
-            - Test it by sending a POST request to the endpoint using Postman
-
-          - Route: /login
-            // Post request handler to log in an employee
-            - Write the sql query
-            - Execute the query
-            - Send the response back (Success with employee data or Error)
-            - Test it by sending a POST request to the endpoint using Postman
-
-      - Done with the backend for now
+          
 
 Set up the Frontend
 
 ---
 
     - frontend (Folder)
-      - Run the following command to create the fronend react app from the project folder (abegaragetest)
-        - npx create-react-app frontend
-        (You can use Vite in here as well. But we will use CRA for now)
-          - Here is a short video on how to use Vite to create a react app
-            https://www.youtube.com/watch?v=vr-I2HIVmTw
-      - Go to app.js and edit the page to test if it is working
-        - Keep a simple text that says "Test app" in the body
-      - Based on the Wireframes, we need to create the following pages
-        - Home
-          Path: /
-        - Add Employee
-          Path: /add-employee
-        - Log in
-          Path: /login
-        * Notes:
-          - Eventhough the paths above are similar with the ones we used for tha backend, since the webservers are different, we can use the same path names.
-          - We used Express.js for the backend and the webserver.
-          - Apps created using create-react-app include a built-in development server for local development purposes (Webpack Dev Server).
-        - Let us now create the pages
-          - Create a folder called pages and create the following files to hold the pages
-            - AddEmployee.js
-            - Login.js
-            - Home.js
-            * Enabled the Reactjs code snippets extension on VSCode to make it easier to write the code
-              - Use rsf to create a simple placeholder component on both pages. We will come back and add the forms later.
-        - Add the routes to the pages on the App.js file
-          * Note:
+      
             - Since we are structuring our App as a single page application, where app.js is the single page that gets called all the time, we need a mechanism to send different components for different requests. That is why we need to use Routing.
             - Create React App tool chain doesn't include page routing by default.
             - React Router is the most popular routing library for React. Start by installing and importing that
@@ -214,36 +117,7 @@ Set up the Frontend
           - Import the page components on the App.js file
             (These are the different components we want to send for different requests)
             // Import the page components
-          - Add the routes
-            - Home: /
-            - AddEmployee: /add-employee
-            - Login: /login
-          - Test the routes on the browser
-            - http://localhost:3000/
-            - http://localhost:3000/add-employee
-            - http://localhost:3000/login
-          - Let us now add the forms to accept user inputs on these pages
-
-            - Add Employee
-              - Add a simple form with the fields defined on the design
-                function AddEmployee(props) {
-                  return (
-                    <div>
-                      <h1>Add employee</h1>
-                      <form>
-                        <label htmlFor="fname">First name:</label><br />
-                        <input type="text" id="fname" name="fname" /><br />
-                        <label htmlFor="lname">Last name:</label><br />
-                        <input type="text" id="lname" name="lname" /><br />
-                        <label htmlFor="email">Email:</label><br />
-                        <input type="text" id="email" name="email" /><br />
-                        <label htmlFor="password">Password:</label><br />
-                        <input type="text" id="password" name="password" /><br /><br />
-                        <input type="submit" value="Submit" />
-                      </form>
-                    </div>
-                  );
-                }
+          -
               - First, let's see what happens if we just submit data as it is now
               - Browsers are traditionally designed to send GET requests when we submit a form. The request is sent to a url provided under the "action" form property. If there is nothing provided there, the browser sends the request to the same url as the page.
               - The form values are sent as query parameters appended on the URL.
@@ -264,61 +138,7 @@ Set up the Frontend
                 - We will use the name property to identify the form field
                 - We will use the onSubmit event to send the request to the backend server
 
-                // Prepare the data to be sent to the server (Should follow the format defined on the API documentation)
-                  {
-                    "first_name": "John",
-                    "last_name": "Doe",
-                    "email": "joe@gmail.com",
-                    "password": "123456"
-                  }
-                // Send the data to the server
-                  - Get the url from the API documentation
-                  - Use the fetch API to send the request
-                  ** You should recieve an error message saying that the request is blocked by CORS policy.
-                    - CORS stands for Cross Origin Resource Sharing.
-                    - It is a security feature built into browsers to prevent a web application from making requests to a different domain than the one that served the web application.
-                    - In our case, the frontend is served from http://localhost:3000 and the backend is served from http://localhost:4000.
-                    - The browser allows the frontend to make requests to the backend only if the backend specifically allows it.
-                  - The browser allows the frontend to make requests to the backend only if the backend specifically allows it.
-                    - To allow that, we need to add the following headers to the response from the backend server
-                      - Access-Control-Allow-Origin: http://localhost:3000
-                      - Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS
-                      - Access-Control-Allow-Headers: Content-Type
-                      - Access-Control-Allow-Credentials: true
-                    - We can do that by adding the following middleware to the backend server
-                      - app.use((req, res, next) => {
-                          res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
-                          res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-                          res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
-                          res.setHeader('Access-Control-Allow-Credentials', true);
-                          next();
-                        });
-                  - Submit and try again now
-                    - Should work now
-                    - Check if the data is added to the DB
-
-                  - Display the returned message on the /add-employee page
-                    - Use the useState hook to store the message
-                    // Declare a state variable to store the response from the server
-                    // Save the response from the server in the state variable
-                    - Display the message on the page
-                    {/* Display the return message in here */}
-
-                  Note: The client is directly communicating with the backend server. Eventhough the code was written on the frontend, it is loaded on the browser and executed on the browser. You can disable the frontend server and the application will still work as long as it is already loaded on the browser.
-
-            - Login
-              - Very similar to the Add Employee page
-              - Lets import the useState hook to store the form data
-              // Declare state variables for each of the form fields
-              // Declare a state variable to store the response from the server
-              // Write a function to handle the form submission
-              // Prevent the default behaviour of the form submission
-              // Prepare the data to be sent to the server
-              // Send the data to the server
-              // Store the response from the server in a state variable
-
-      - Our code is now ready to be pushed to the server. But, once it is pushed to the server, the localhost links need to match the one on the server and not the local host. We need to modify that before pushing the code.
-        - If we had already setup our server, it would have been easier. Since we dont have it set up, it will be the IP address of the server. But we don't even know that yet. So, lets leave this as is and prepare our server now
+                
 
 Set up our host server on Amazon AWS (EC2)
 
@@ -414,7 +234,7 @@ Set up our host server on Amazon AWS (EC2)
           alter user 'root'@'localhost' identified with mysql_native_password by '14777';
           (You should see Query OK, 0 rows affected (0.01 sec))
           - u = root
-          - p = 14777
+          - p = 14777@
         exit
       - Log in to MySql
         mysql -u root -p
@@ -552,10 +372,6 @@ Deploy our code to the server
 # clear button after form fill
 
 # onfocus event
-
-# int x = 10; in c++ it know when compile time
-
-# let x= 10; javascript know when run time
 
 Welcome to the WAN IP Project README! This project aims to assist users of Ethio Telecom in setting up their Wi-Fi router modems by providing their WAN IP information. Follow this guide to learn about the project's purpose, installation process, usage, and more.
 
