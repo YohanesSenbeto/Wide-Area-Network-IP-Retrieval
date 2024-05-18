@@ -49,6 +49,10 @@ function Header(props) {
             }
         };
 
+        fetchUserName();
+    }, [isLogged]);
+
+    useEffect(() => {
         const startLogoutTimer = () => {
             clearInterval(logoutTimer);
             const timer = setInterval(() => {
@@ -58,13 +62,12 @@ function Header(props) {
             setLogoutTimer(timer);
         };
 
-        fetchUserName();
         startLogoutTimer();
 
         return () => {
             clearInterval(logoutTimer);
         };
-    }, [isLogged, logoutTimer]);
+    }, [logoutTimer]);
 
     const handleLogout = () => {
         loginService.logOut();
@@ -74,6 +77,10 @@ function Header(props) {
 
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
+    };
+
+    const handleNavItemChange = (navItem) => {
+        setActiveNavItem(navItem);
     };
 
     return (
@@ -132,167 +139,87 @@ function Header(props) {
                         id="navbarSupportedContent"
                     >
                         <ul className="navbar-nav ml-auto">
-                            <li className="nav-item">
-                                <Link
-                                    to="/"
-                                    className={`nav-link text-white ${
-                                        activeNavItem === "/" ? "active" : ""
-                                    }`}
-                                    data-nav="/"
-                                    onClick={() => setActiveNavItem("/")}
-                                >
-                                    Home
-                                </Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link
-                                    to="/about"
-                                    className={`nav-link text-white ${
-                                        activeNavItem === "/about"
-                                            ? "active"
-                                            : ""
-                                    }`}
-                                    data-nav="/about"
-                                    onClick={() => setActiveNavItem("/about")}
-                                >
-                                    About Us
-                                </Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link
-                                    to="/services"
-                                    className={`nav-link text-white ${
-                                        activeNavItem === "/services"
-                                            ? "active"
-                                            : ""
-                                    }`}
-                                    data-nav="/services"
-                                    onClick={() =>
-                                        setActiveNavItem("/services")
-                                    }
-                                >
-                                    Services
-                                </Link>
-                            </li>
+                            <NavItem
+                                to="/"
+                                label="Home"
+                                activeNavItem={activeNavItem}
+                                handleNavItemChange={handleNavItemChange}
+                            />
+                            <NavItem
+                                to="/about"
+                                label="About Us"
+                                activeNavItem={activeNavItem}
+                                handleNavItemChange={handleNavItemChange}
+                            />
+                            <NavItem
+                                to="/services"
+                                label="Services"
+                                activeNavItem={activeNavItem}
+                                handleNavItemChange={handleNavItemChange}
+                            />
                             {isLogged && (
                                 <>
-                                    <li className="nav-item">
-                                        <Link
-                                            to="/wanip"
-                                            className={`nav-link text-white ${
-                                                activeNavItem === "/wanip"
-                                                    ? "active"
-                                                    : ""
-                                            }`}
-                                            data-nav="/wanip"
-                                            onClick={() =>
-                                                setActiveNavItem("/wanip")
-                                            }
-                                        >
-                                            WAN IP
-                                        </Link>
-                                    </li>
-                                    <li className="nav-item">
-                                        <Link
-                                            to="/blog"
-                                            className={`nav-link text-white ${
-                                                activeNavItem === "/blog"
-                                                    ? "active"
-                                                    : ""
-                                            }`}
-                                            data-nav="/blog"
-                                            onClick={() =>
-                                                setActiveNavItem("/blog")
-                                            }
-                                        >
-                                            Blog
-                                        </Link>
-                                    </li>
-                                    <li className="nav-item">
-                                        <Link
-                                            to="/tutorials"
-                                            className={`nav-link text-white ${
-                                                activeNavItem === "/tutorials"
-                                                    ? "active"
-                                                    : ""
-                                            }`}
-                                            data-nav="/tutorials"
-                                            onClick={() =>
-                                                setActiveNavItem("/tutorials")
-                                            }
-                                        >
-                                            Tutorials
-                                        </Link>
-                                    </li>
-                                    <li className="nav-item">
-                                        <Link
-                                            to="/support"
-                                            className={`nav-link text-white ${
-                                                activeNavItem === "/support"
-                                                    ? "active"
-                                                    : ""
-                                            }`}
-                                            data-nav="/support"
-                                            onClick={() =>
-                                                setActiveNavItem("/support")
-                                            }
-                                        >
-                                            Support
-                                        </Link>
-                                    </li>
-                                    <li className="nav-item">
-                                        <Link
-                                            to="/contact"
-                                            className={`nav-link text-white ${
-                                                activeNavItem === "/contact"
-                                                    ? "active"
-                                                    : ""
-                                            }`}
-                                            data-nav="/contact"
-                                            onClick={() =>
-                                                setActiveNavItem("/contact")
-                                            }
-                                        >
-                                            Contact
-                                        </Link>
-                                    </li>
+                                    <NavItem
+                                        to="/wanip"
+                                        label="WAN IP"
+                                        activeNavItem={activeNavItem}
+                                        handleNavItemChange={
+                                            handleNavItemChange
+                                        }
+                                    />
+                                    <NavItem
+                                        to="/blog"
+                                        label="Blog"
+                                        activeNavItem={activeNavItem}
+                                        handleNavItemChange={
+                                            handleNavItemChange
+                                        }
+                                    />
+                                    <NavItem
+                                        to="/tutorials"
+                                        label="Tutorials"
+                                        activeNavItem={activeNavItem}
+                                        handleNavItemChange={
+                                            handleNavItemChange
+                                        }
+                                    />
+                                    <NavItem
+                                        to="/support"
+                                        label="Support"
+                                        activeNavItem={activeNavItem}
+                                        handleNavItemChange={
+                                            handleNavItemChange
+                                        }
+                                    />
+                                    <NavItem
+                                        to="/contact"
+                                        label="Contact"
+                                        activeNavItem={activeNavItem}
+                                        handleNavItemChange={
+                                            handleNavItemChange
+                                        }
+                                    />
                                 </>
                             )}
                             {!isLogged && (
-                                <li className="nav-item">
-                                    <Link
+                                <>
+                                    <NavItem
                                         to="/register"
-                                        className={`nav-link text-white ${
-                                            activeNavItem === "/register"
-                                                ? "active"
-                                                : ""
-                                        }`}
-                                        data-nav="/register"
-                                        onClick={() =>
-                                            setActiveNavItem("/register")
+                                        label="SignUp"
+                                        activeNavItem={activeNavItem}
+                                        handleNavItemChange={
+                                            handleNavItemChange
                                         }
-                                    >
-                                        SignUp
-                                    </Link>
-                                </li>
-                            )}
-                            {!isLogged && (
-                                <li className="nav-item">
-                                    <Link
+                                    />
+                                    <NavItem
                                         to="/login"
-                                        className={`nav-link text-white ${
-                                            activeNavItem === "/login"
-                                                ? "active"
-                                                : ""
-                                        }`}
-                                        data-nav="/login"
-                                        onClick={() =>
-                                            setActiveNavItem("/login")
+                                        label="Login"
+                                        activeNavItem={activeNavItem}
+                                        handleNavItemChange={
+                                            handleNavItemChange
                                         }
-                                    >
-                                        Login
-                                    </Link>
-                                </li>
+                                    />
+                                </>
                             )}
                             {isLogged && (
                                 <li className="nav-item">
@@ -313,5 +240,22 @@ function Header(props) {
         </header>
     );
 }
+
+const NavItem = ({ to, label, activeNavItem, handleNavItemChange }) => {
+    return (
+        <li className="nav-item">
+            <Link
+                to={to}
+                className={`nav-link text-white ${
+                    activeNavItem === to ? "active" : ""
+                }`}
+                data-nav={to}
+                onClick={() => handleNavItemChange(to)}
+            >
+                {label}
+            </Link>
+        </li>
+    );
+};
 
 export default Header;

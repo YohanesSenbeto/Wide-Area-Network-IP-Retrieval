@@ -1,7 +1,6 @@
-// SignupSuccess.js
-import React, { useEffect } from "react";
+import React from "react";
 import { Button, Container, Row, Col } from "react-bootstrap";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const SignupSuccess = () => {
     const navigate = useNavigate();
@@ -13,8 +12,6 @@ const SignupSuccess = () => {
                     <div className="signup-success">
                         <h2>Signup Successful!</h2>
                         <p>Your account has been created successfully.</p>
-
-                        {/* Add other fields as needed */}
                         <Button
                             variant="primary"
                             onClick={() => navigate("/login")}

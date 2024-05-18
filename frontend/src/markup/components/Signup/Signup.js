@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { signUp } from "../../../services/signup.service";
 import "./signup.css";
@@ -23,6 +23,10 @@ function SignupForm() {
         serverError: "",
     });
 
+    useEffect(() => {
+        console.log("Current path:", location.pathname);
+    }, [location]);
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({
@@ -34,11 +38,9 @@ function SignupForm() {
     const handleSubmit = async (event) => {
         event.preventDefault();
 
-        // Handle client-side validations here
-        let valid = true; // Flag
+        let valid = true;
         const errors = { ...formErrors };
 
-        // First name validation
         if (!formData.first_name) {
             errors.first_name = "Please enter your first name";
             valid = false;
@@ -46,7 +48,6 @@ function SignupForm() {
             errors.first_name = "";
         }
 
-        // Last name validation
         if (!formData.last_name) {
             errors.last_name = "Please enter your last name";
             valid = false;
@@ -54,7 +55,6 @@ function SignupForm() {
             errors.last_name = "";
         }
 
-        // Email validation
         if (!formData.user_email) {
             errors.user_email = "Please enter your email address";
             valid = false;
@@ -71,7 +71,6 @@ function SignupForm() {
             }
         }
 
-        // Password validation (must be at least 6 characters long)
         if (!formData.user_password || formData.user_password.length < 6) {
             errors.user_password =
                 "Password must be at least 6 characters long";
@@ -82,42 +81,29 @@ function SignupForm() {
 
         setFormErrors(errors);
 
-        // Handle form submission here
         if (valid) {
-            // Call the signUp function from the service
-            signUp(formData)
-                .then((response) => response.json())
-                .then((response) => {
-                    if (response.status === "success") {
-                        // Save the user in the local storage
-                        if (response.data.user_token) {
-                            localStorage.setItem(
-                                "user",
-                                JSON.stringify(response.data)
-                            );
-                        }
-                        // Redirect the user to the dashboard or homepage
-                        if (location.pathname === "/Register") {
-                            navigate("/Success");
-                        } else {
-                            navigate("/signupSuccess");
-                        }
-                    } else {
-                        // Show an error message
-                        setFormErrors({
-                            ...errors,
-                            serverError: response.message,
-                        });
+            try {
+                const response = await signUp(formData);
+                const data = await response.json();
+
+                if (data.status === "success") {
+                    if (data.data.user_token) {
+                        localStorage.setItem("user", JSON.stringify(data.data));
                     }
-                })
-                .catch((err) => {
+                    navigate("/signupSuccess");
+                } else {
                     setFormErrors({
                         ...errors,
-                        serverError:
-                            "An error has occurred. Please try again later." +
-                            err,
+                        serverError: data.message,
                     });
+                }
+            } catch (err) {
+                setFormErrors({
+                    ...errors,
+                    serverError:
+                        "An error has occurred. Please try again later." + err,
                 });
+            }
         }
     };
 

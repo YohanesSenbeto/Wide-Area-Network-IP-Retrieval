@@ -97,7 +97,8 @@ function LoginForm() {
                                 placeholder="Enter email"
                                 value={user_email}
                                 onChange={(e) => setEmail(e.target.value)}
-                                autoComplete="username"
+                                autoComplete="email" // Set autocomplete to "email"
+                                name="email" // Add name attribute
                             />
                             <Form.Text className="text-danger">
                                 {emailError}
@@ -111,7 +112,8 @@ function LoginForm() {
                                 placeholder="Password"
                                 value={user_password}
                                 onChange={(e) => setPassword(e.target.value)}
-                                autoComplete="current-password"
+                                autoComplete="current-password" // Set autocomplete to "current-password"
+                                name="password" // Add name attribute
                             />
                             <Form.Text className="text-danger">
                                 {passwordError}
@@ -120,7 +122,7 @@ function LoginForm() {
 
                         <Form.Group>{renderUserTypeDropdown()}</Form.Group>
 
-                        <Button variant="primary" type="submit" block>
+                        <Button variant="primary" type="submit">
                             Login
                         </Button>
                     </Form>

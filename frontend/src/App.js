@@ -2,8 +2,6 @@
 import React from "react";
 import ImageSlider from "./ImageSlider";
 import "bootstrap/dist/css/bootstrap.min.css";
-import Sidebar from "./markup/components/Sidebar/Sidebar";
-// import Navbar from "./Navbar/Navbar";
 // Import the Routes and Route components from react-router
 import { Routes, Route } from "react-router";
 // Import the page components
@@ -13,6 +11,7 @@ import Login from "./markup/pages/Login";
 import Addstaff from "./markup/pages/admin/AddStaff";
 import Unauthorized from "./markup/pages/Unauthorized";
 import About from "./markup/components/about/about";
+import SignupSuccess from "./markup/components/Signup/SignupSuccess"; // Add this import
 // Import the Orders and Customers components
 import Orders from "./markup/pages/admin/Orders";
 import Customers from "./markup/pages/admin/AddCustomers";
@@ -20,7 +19,6 @@ import Customers from "./markup/pages/admin/AddCustomers";
 import Staffs from "./markup/pages/admin/Staffs";
 import Services from "./markup/components/Services/Service";
 import Support from "./markup/components/support/support";
-import tutorials from "./markup/components/Tutorials/tutorials";
 // Import the css files
 import "./assets/template_assets/css/bootstrap.css";
 import "./assets/template_assets/css/style.css";
@@ -40,7 +38,6 @@ import PrivateAuthRoute from "./markup/components/Auth/PrivateAuthRoute";
 import SignupForm from "./markup/components/Signup/Signup";
 import WanIpAdder from "./markup/components/wanipadder/WanIpAdder";
 import Wanip from "./markup/pages/Wanip";
-import AddStaff from "./markup/pages/admin/AddStaff";
 import AddcustomerForm from "./markup/components/Admin/AddCustomerForm/AddCustomerForm";
 import AddstaffForm from "./markup/components/Admin/AddStaffForm/AddStaffForm";
 import AdminMenu from "./markup/components/Admin/AdminMenu/AdminMenu";
@@ -58,7 +55,6 @@ function App() {
                 <Route path="/Register" element={<SignupForm />} />
                 <Route path="/addWanIp" element={<WanIpAdder />} />
                 <Route path="/WanIp" element={<Wanip />} />
-
                 <Route path="/about" element={<About />} />
                 <Route path="/Services" element={<Services />} />
                 <Route path="/Support" element={<Support />} />
@@ -74,10 +70,11 @@ function App() {
                 <Route path="/admin/add-router" element={<AddcustomerForm />} />
                 <Route path="/admin/add-staff" element={<Addstaff />} />
                 <Route path="/Success" element={<Success />} />
+                <Route path="/signupSuccess" element={<SignupSuccess />} />{" "}
+                {/* Add this route */}
                 <Route path="/admin/add-ipaddress" element={<AddIpAddress />} />
                 <Route path="/unauthorized" element={<Unauthorized />} />
-                {/* // Add the Orders Route  */}
-
+                {/* Add the Orders Route */}
                 <Route
                     path="/admin/orders"
                     element={
@@ -86,7 +83,7 @@ function App() {
                         </PrivateAuthRoute>
                     }
                 />
-                {/* // Add the Customers Route  */}
+                {/* Add the Customers Route */}
                 <Route
                     path="/admin/customers"
                     element={
@@ -95,9 +92,8 @@ function App() {
                         </PrivateAuthRoute>
                     }
                 />
-                {/* // Add the staffs Route  */}
+                {/* Add the staffs Route */}
                 <Route path="/admin/staffs" element={<Staffs />} />
-                <Route path="/admin/staffs" element={<AddStaff />} />
                 <Route
                     path="/admin/add-staff"
                     element={
@@ -106,19 +102,12 @@ function App() {
                         </PrivateAuthRoute>
                     }
                 />
-                {/* 
-          Customers (/admin/customers) - managers and admins
-          Orders (/admin/orders) - Can be accessed by all staffs
-          Add staff (/admin/add-staff) - admins only 
-            - Admin: 3 
-            - Manager: 2 
-            - staff: 1 
-        */}
             </Routes>
             <Footer />
         </div>
     );
 }
+
 const slides = () => {
     const slides = [
         { url: "http://localhost:3000/image-1.jpg", title: "beach" },
