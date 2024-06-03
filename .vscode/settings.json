@@ -1,3 +1,6 @@
 {
-    "editor.formatOnSave": true
+    "editor.formatOnSave": true,
+    "conventionalCommits.editor.keepAfterSave": true,
+    "conventionalCommits.promptCI": true,
+    "conventionalCommits.showEditor": true
 }

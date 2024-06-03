@@ -1,67 +1,11 @@
-/* Styles for Home Banner */
-.homebanner {
-  width: 100%;
-  margin: 50px 100px; /* Adjusted top margin to push content down */
-  height: auto; /* Adjusted for responsive height */
+.home-slider-container {
+  position: relative;
+  width: 100vw; /* Set width to 100% of the viewport width */
+  height: 100vh; /* Set height to 100% of the viewport height */
 }
 
-/* Styles for Horizontal Image Slider */
-.horizontal-slider {
-  display: flex;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  gap: 20px; /* Add gap between images */
-}
-
-.horizontal-slider img {
-  flex: 0 0 auto;
-  width: calc(100vw - 40px); /* Adjusted to consider the gap */
-  height: auto;
-  object-fit: cover;
-  scroll-snap-align: start;
-}
-
-/* Styles for Typewriter Effect */
-.typewriter-container {
-  text-align: center;
-  margin-top: 50px; /* Adjusted top margin to push content down */
-}
-
-.typewriter-text {
-  white-space: nowrap;
-  margin: 10px;
-  padding: 20px;
-  font-size: 2em;
-  font-weight: bold;
-  letter-spacing: 0.1em;
-}
-
-/* General Paragraph Styles */
-p {
-  color: black;
-}
-
-/* Styles for Guide Section */
-.guide {
-  width: 100%;
-  margin-bottom: 20px;
-  display: flex;
-  justify-content: center; /* Center guide section */
-  align-items: center; /* Center guide section vertically */
-}
-
-/* Image Styles */
-img {
-  max-width: 100%; /* Ensure images don't exceed container width */
-  height: auto;
-}
-
-/* Styles for WAN Component */
-.wan {
-  width: 50%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.home-slider-container img {
+  width: 100%; /* Make the image fill the entire width of its container */
+  height: 100%; /* Make the image fill the entire height of its container */
+  object-fit: cover; /* Maintain aspect ratio and cover the entire container */
 }

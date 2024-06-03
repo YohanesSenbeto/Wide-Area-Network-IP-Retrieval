@@ -10,6 +10,7 @@ function WanIpRequester() {
     const [tutorialLink, setTutorialLink] = useState("");
     const [selectedRouter, setSelectedRouter] = useState("");
     const [loading, setLoading] = useState(false);
+    const [showVideo, setShowVideo] = useState(false);
 
     const routerOptions = [
         "Tp-link",
@@ -43,6 +44,7 @@ function WanIpRequester() {
     const fetchTutorialLink = async (router) => {
         try {
             setTutorialLink(routerVideoLinks[router]);
+            setShowVideo(true); // Show the video overlay
         } catch (error) {
             setError("Error fetching tutorial link.");
         }
@@ -89,10 +91,10 @@ function WanIpRequester() {
                         type="text"
                         value={ipAddress}
                         onChange={(e) => setIpAddress(e.target.value)}
-                        placeholder="ENTER YOUR WAN IP here"
+                        placeholder="Enter your WAN IP here"
                         isInvalid={error !== ""}
                         required
-                        className="form-place"
+                        className="form-control"
                     />
                     <Form.Control.Feedback type="invalid">
                         {error}
@@ -111,7 +113,7 @@ function WanIpRequester() {
                         }}
                         value={selectedRouter}
                         required
-                        className="select-control"
+                        className="form-control select-control"
                     >
                         <option value="" disabled>
                             Select router
@@ -136,19 +138,24 @@ function WanIpRequester() {
                 <div className="result">
                     <p>Subnet Mask: {subnetMask}</p>
                     <p>Default Gateway: {defaultGateway}</p>
-                    {tutorialLink && (
-                        <div className="video-card">
-                            <h3>Tutorial Video</h3>
-                            <iframe
-                                width="100%"
-                                height="315"
-                                src={tutorialLink}
-                                title="Router Tutorial Video"
-                                frameBorder="0"
-                                allowFullScreen
-                            ></iframe>
-                        </div>
-                    )}
+                </div>
+            )}
+            {showVideo && tutorialLink && (
+                <div className="fullscreen-video-overlay">
+                    <div className="fullscreen-video-container">
+                        <button
+                            className="close-button"
+                            onClick={() => setShowVideo(false)}
+                        >
+                            ✕
+                        </button>
+                        <iframe
+                            src={tutorialLink}
+                            title="Router Tutorial Video"
+                            frameBorder="0"
+                            allowFullScreen
+                        ></iframe>
+                    </div>
                 </div>
             )}
         </Container>

@@ -53,7 +53,7 @@ function LoginForm() {
             }
         } catch (error) {
             console.error("Login failed:", error);
-            setServerError("An error occurred. Please try again later.");
+            setServerError("Your password or email is incorrect.");
         }
     };
 
