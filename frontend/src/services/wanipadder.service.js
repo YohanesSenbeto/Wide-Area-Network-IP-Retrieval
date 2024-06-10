@@ -1,17 +1,19 @@
 // wanIpAdderService.js
-const api_url = `http://localhost 8000`;
-const addWanIp = async (wanIp) => {
-    console.log(wanIp);
+const api_url = `http://localhost:8000`;
+
+const addWanIp = async (formData) => {
+    console.log(formData);
     try {
         const response = await fetch(`${api_url}/api/addWanIp`, {
             method: "POST",
             headers: {
-                "Content-Tyclearpe": "application/json",
+                "Content-Type": "application/json", // Fix typo here
             },
-            body: JSON.stringify({ wanIp }),
+            body: JSON.stringify(formData), // Remove unnecessary object wrapping
         });
 
-        if (response.status === 200) {
+        if (response.ok) {
+            // Simplify status check
             const data = await response.json();
             return data;
         } else {
@@ -25,6 +27,7 @@ const addWanIp = async (wanIp) => {
         throw error;
     }
 };
+
 export default {
     addWanIp,
 };

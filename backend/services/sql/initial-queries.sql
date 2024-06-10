@@ -12,14 +12,17 @@ CREATE TABLE IF NOT EXISTS `users` (
   INDEX (`user_email`)
 ) ENGINE=InnoDB;
 
--- Create the wan_ip table
+-- Create the wan_ipaddress table
 CREATE TABLE IF NOT EXISTS `wan_ipaddress` (
   `id` INT PRIMARY KEY AUTO_INCREMENT,
-  `wan_ipaddress` VARCHAR(15) NOT NULL,
+  `zone_region` VARCHAR(50) NOT NULL,
+  `start_ip` VARCHAR(15) NOT NULL,
+  `end_ip` VARCHAR(15) NOT NULL,
   `subnet_mask` VARCHAR(15) NOT NULL,
-  `default_gateway` VARCHAR(15) NOT NULL,
-  `router_model` VARCHAR(50) NOT NULL
-) ENGINE=InnoDB; 
+  `default_gateway` VARCHAR(15) NOT NULL
+) ENGINE=InnoDB;
+
+
 
 -- Create the TutorialTable
 CREATE TABLE IF NOT EXISTS `tutorial_table` (

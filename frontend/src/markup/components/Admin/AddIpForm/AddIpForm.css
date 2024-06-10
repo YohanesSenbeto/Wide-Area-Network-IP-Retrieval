@@ -1,4 +1,4 @@
-.login-section {
+.add-ip-section {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -7,26 +7,23 @@
   background-color: #f8f9fa;
 }
 
-.login-container {
+.container {
   width: 100%;
-  max-width: 600px;
+  max-width: 1000px; /* Increase the maximum width */
   background-color: #fff;
   padding: 30px;
   border-radius: 8px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
-.login-title {
+.title {
   text-align: center;
   margin-bottom: 20px;
 }
 
-.login-form {
-  width: 100%;
-}
-
 .form-group {
   margin-bottom: 15px;
+  display: block; /* Ensure each form group appears as a block element */
 }
 
 .form-control {
@@ -38,7 +35,7 @@
   box-sizing: border-box;
 }
 
-.btn {
+button {
   width: 100%;
   padding: 12px;
   background-color: #007bff;
@@ -50,22 +47,20 @@
   transition: background-color 0.3s;
 }
 
-.btn:hover {
+button:hover {
   background-color: #0056b3;
 }
 
-.error-message {
-  color: red;
-  font-size: 0.875em;
+.alert {
   margin-top: 10px;
 }
 
 @media (max-width: 768px) {
-  .login-container {
-      padding: 20px;
+  .container {
+    padding: 20px;
   }
 
-  .btn {
-      font-size: 14px;
+  button {
+    font-size: 14px;
   }
 }

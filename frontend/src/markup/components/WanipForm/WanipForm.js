@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Form, Container, Button } from "react-bootstrap";
 import "./WanIpRequester.css";
 
@@ -44,11 +44,16 @@ function WanIpRequester() {
     const fetchTutorialLink = async (router) => {
         try {
             setTutorialLink(routerVideoLinks[router]);
-            setShowVideo(true); // Show the video overlay
         } catch (error) {
             setError("Error fetching tutorial link.");
         }
     };
+
+    useEffect(() => {
+        if (subnetMask && defaultGateway) {
+            fetchTutorialLink(selectedRouter);
+        }
+    }, [subnetMask, defaultGateway, selectedRouter]);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -70,83 +75,109 @@ function WanIpRequester() {
                 }
             );
             if (!response.ok) {
-                throw new Error("Error sending IP address to the server.");
+                throw new Error("Your WAN Ip information is not Exit");
             }
             const data = await response.json();
             setSubnetMask(data.subnet_mask);
             setDefaultGateway(data.default_gateway);
-            fetchTutorialLink(selectedRouter);
         } catch (error) {
-            setError("Error sending IP address to the server.");
+            setError("Your WAN Ip information is not Exit");
         }
         setLoading(false);
     };
 
+    const closeVideo = () => {
+        setShowVideo(false);
+        setTutorialLink("");
+    };
+
     return (
-        <Container>
-            <Form onSubmit={handleSubmit}>
-                <Form.Group controlId="ipAddress" className="form-group">
-                    <Form.Label className="form-label">WAN IP:</Form.Label>
-                    <Form.Control
-                        type="text"
-                        value={ipAddress}
-                        onChange={(e) => setIpAddress(e.target.value)}
-                        placeholder="Enter your WAN IP here"
-                        isInvalid={error !== ""}
-                        required
-                        className="form-control"
-                    />
-                    <Form.Control.Feedback type="invalid">
-                        {error}
-                    </Form.Control.Feedback>
-                </Form.Group>
-                <Form.Group controlId="routerSelect" className="form-group">
-                    <Form.Label className="form-label">
-                        Select Router:
-                    </Form.Label>
-                    <Form.Control
-                        as="select"
-                        custom
-                        onChange={(e) => {
-                            setSelectedRouter(e.target.value);
-                            setTutorialLink("");
-                        }}
-                        value={selectedRouter}
-                        required
-                        className="form-control select-control"
-                    >
-                        <option value="" disabled>
-                            Select router
-                        </option>
-                        {routerOptions.map((router, index) => (
-                            <option key={index} value={router}>
-                                {router}
-                            </option>
-                        ))}
-                    </Form.Control>
-                </Form.Group>
-                <Button
-                    type="submit"
-                    variant="primary"
-                    disabled={loading}
-                    className="submit-button"
-                >
-                    {loading ? "Loading..." : "Generate"}
-                </Button>
-            </Form>
-            {subnetMask && defaultGateway && (
-                <div className="result">
-                    <p>Subnet Mask: {subnetMask}</p>
-                    <p>Default Gateway: {defaultGateway}</p>
-                </div>
-            )}
-            {showVideo && tutorialLink && (
-                <div className="fullscreen-video-overlay">
-                    <div className="fullscreen-video-container">
-                        <button
-                            className="close-button"
-                            onClick={() => setShowVideo(false)}
+        <Container className="form-video-container">
+            <div className="form-container">
+                <Form onSubmit={handleSubmit}>
+                    <Form.Group controlId="ipAddress" className="form-group">
+                        <Form.Label className="form-label">WAN IP:</Form.Label>
+                        <Form.Control
+                            type="text"
+                            value={ipAddress}
+                            onChange={(e) => setIpAddress(e.target.value)}
+                            placeholder="Enter your WAN IP here"
+                            isInvalid={error !== ""}
+                            required
+                            className="form-control"
+                        />
+                        <Form.Control.Feedback type="invalid">
+                            {error}
+                        </Form.Control.Feedback>
+                    </Form.Group>
+                    <Form.Group controlId="routerSelect" className="form-group">
+                        <Form.Label className="form-label">
+                            Select Router:
+                        </Form.Label>
+                        <Form.Control
+                            as="select"
+                            custom
+                            onChange={(e) => {
+                                setSelectedRouter(e.target.value);
+                                setTutorialLink("");
+                            }}
+                            value={selectedRouter}
+                            required
+                            className="form-control select-control"
                         >
+                            <option value="" disabled>
+                                Select router
+                            </option>
+                            {routerOptions.map((router, index) => (
+                                <option key={index} value={router}>
+                                    {router}
+                                </option>
+                            ))}
+                        </Form.Control>
+                    </Form.Group>
+                    <Button
+                        type="submit"
+                        variant="primary"
+                        disabled={loading}
+                        className="submit-button"
+                    >
+                        {loading ? (
+                            <>
+                                <div className="spinner"></div>
+                                Loading...
+                            </>
+                        ) : (
+                            "Generate"
+                        )}
+                    </Button>
+                </Form>
+                {subnetMask && defaultGateway && (
+                    <div className="result">
+                        <p>Subnet Mask: {subnetMask}</p>
+                        <p>Default Gateway: {defaultGateway}</p>
+                        {tutorialLink && (
+                            <p>
+                                If you want the video tutorial, click{" "}
+                                <a
+                                    href={tutorialLink}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                >
+                                    here
+                                </a>
+                                .
+                            </p>
+                        )}
+                    </div>
+                )}
+            </div>
+            {showVideo && tutorialLink && (
+                <div className="fullscreen-video-overlay" onClick={closeVideo}>
+                    <div
+                        className="fullscreen-video-container"
+                        onClick={(e) => e.stopPropagation()}
+                    >
+                        <button className="close-button" onClick={closeVideo}>
                             ✕
                         </button>
                         <iframe

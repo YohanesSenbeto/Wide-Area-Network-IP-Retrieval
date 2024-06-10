@@ -7,13 +7,8 @@ function About() {
             <h1 className="about-title">About Us</h1>
             <div className="about-description">
                 <p className="p">
-                    Our website enables users to retrieve their WAN IP
-                    addresses, discover subnet masks, default gateway
-                    information, geolocation currently for Ethiopia, and other
-                    pertinent network details. We also offer troubleshooting
-                    assistance specially to configure their WI-FI router and
-                    network optimization resources to enhance users'
-                    understanding and performance of WAN IP addresses.
+                    Our website enables users to retrieve their WAN IP addresses
+                    Info and provide how to confeigure their Wi-fi Routers.
                 </p>
             </div>
             <div className="about-container">

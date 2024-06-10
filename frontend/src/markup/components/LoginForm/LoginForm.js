@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { Form, Button, Dropdown } from "react-bootstrap";
+import { Form, Button, Dropdown, Alert } from "react-bootstrap";
 import { useNavigate, useLocation } from "react-router-dom";
 import loginService from "../../../services/login.service";
-import "./LoginForm.css"; // Import your custom CSS file for form styling
+import "./LoginForm.css";
 
 function LoginForm() {
     const navigate = useNavigate();
@@ -12,21 +12,18 @@ function LoginForm() {
     const [emailError, setEmailError] = useState("");
     const [passwordError, setPasswordError] = useState("");
     const [serverError, setServerError] = useState("");
-    const [userType, setUserType] = useState("normal"); // Default: 'normal', other options: 'admin', 'manager', 'staff'
+    const [userType, setUserType] = useState("normal");
 
-    // Check if the route is /login/staff, /login/admin, or /login/manager
     const isStaffRoute = location.pathname.startsWith("/login/staff");
     const isAdminRoute = location.pathname.startsWith("/login/admin");
     const isManagerRoute = location.pathname.startsWith("/login/manager");
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        // Reset errors
         setEmailError("");
         setPasswordError("");
         setServerError("");
 
-        // Client-side validation
         let valid = true;
         if (!user_email || !user_email.includes("@")) {
             setEmailError("Please enter a valid email address");
@@ -38,7 +35,6 @@ function LoginForm() {
         }
         if (!valid) return;
 
-        // Form submission
         const formData = { user_email, user_password, userType };
         try {
             const response = await loginService.logIn(formData);
@@ -60,9 +56,9 @@ function LoginForm() {
     const renderUserTypeDropdown = () => {
         if (isStaffRoute || isAdminRoute || isManagerRoute) {
             return (
-                <Dropdown>
+                <Dropdown className="mb-3">
                     <Dropdown.Toggle variant="secondary" id="dropdown-basic">
-                        {userType === "normal" ? "Normal User" : userType}
+                        {userType.charAt(0).toUpperCase() + userType.slice(1)}
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
                         {["normal", "admin", "manager", "staff"].map((role) => (
@@ -82,14 +78,12 @@ function LoginForm() {
 
     return (
         <section className="login-section">
-            <div className="login-container container-xl">
-                {" "}
-                {/* Increased container size */}
+            <div className="login-container">
                 <div className="login-title">
                     <h2>Login to your account</h2>
                 </div>
                 <div className="login-form">
-                    <Form onSubmit={handleSubmit}>
+                    <Form onSubmit={handleSubmit} noValidate>
                         <Form.Group controlId="formBasicEmail">
                             <Form.Label>Email</Form.Label>
                             <Form.Control
@@ -97,12 +91,13 @@ function LoginForm() {
                                 placeholder="Enter email"
                                 value={user_email}
                                 onChange={(e) => setEmail(e.target.value)}
-                                autoComplete="email" // Set autocomplete to "email"
-                                name="email" // Add name attribute
+                                isInvalid={!!emailError}
+                                autoComplete="email"
+                                name="email"
                             />
-                            <Form.Text className="text-danger">
+                            <Form.Control.Feedback type="invalid">
                                 {emailError}
-                            </Form.Text>
+                            </Form.Control.Feedback>
                         </Form.Group>
 
                         <Form.Group controlId="formBasicPassword">
@@ -112,22 +107,29 @@ function LoginForm() {
                                 placeholder="Password"
                                 value={user_password}
                                 onChange={(e) => setPassword(e.target.value)}
-                                autoComplete="current-password" // Set autocomplete to "current-password"
-                                name="password" // Add name attribute
+                                isInvalid={!!passwordError}
+                                autoComplete="current-password"
+                                name="password"
                             />
-                            <Form.Text className="text-danger">
+                            <Form.Control.Feedback type="invalid">
                                 {passwordError}
-                            </Form.Text>
+                            </Form.Control.Feedback>
                         </Form.Group>
 
-                        <Form.Group>{renderUserTypeDropdown()}</Form.Group>
+                        {renderUserTypeDropdown()}
 
-                        <Button variant="primary" type="submit">
+                        <Button
+                            variant="primary"
+                            type="submit"
+                            className="w-100"
+                        >
                             Login
                         </Button>
                     </Form>
                     {serverError && (
-                        <div className="error-message">{serverError}</div>
+                        <Alert variant="danger" className="mt-3">
+                            {serverError}
+                        </Alert>
                     )}
                 </div>
             </div>

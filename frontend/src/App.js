@@ -11,7 +11,9 @@ import Login from "./markup/pages/Login";
 import Addstaff from "./markup/pages/admin/AddStaff";
 import Unauthorized from "./markup/pages/Unauthorized";
 import About from "./markup/components/about/about";
+import Blogpage from "./markup/components/blogpage/Blogpage";
 import SignupSuccess from "./markup/components/Signup/SignupSuccess"; // Add this import
+import ContactForm from "./markup/components/contact/ContactForm";
 // Import the Orders and Customers components
 import Orders from "./markup/pages/admin/Orders";
 import Customers from "./markup/pages/admin/AddCustomers";
@@ -70,6 +72,8 @@ function App() {
                 <Route path="/admin/add-router" element={<AddcustomerForm />} />
                 <Route path="/admin/add-staff" element={<Addstaff />} />
                 <Route path="/Success" element={<Success />} />
+                <Route path="/Blogpage" element={<Blogpage />} />
+                <Route path="/ContactForm" element={<ContactForm />} />
                 <Route path="/signupSuccess" element={<SignupSuccess />} />{" "}
                 {/* Add this route */}
                 <Route path="/admin/add-ipaddress" element={<AddIpAddress />} />

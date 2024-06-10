@@ -109,8 +109,8 @@ function SignupForm() {
 
     return (
         <section className="signup-section">
-            <h4 className="signup-title">Create a new account</h4>
             <div className="container">
+                <h4 className="signup-title">Create a new account</h4>
                 <div className="signup-form">
                     <form onSubmit={handleSubmit}>
                         <div className="form-group">

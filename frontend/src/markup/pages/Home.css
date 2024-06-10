@@ -5,7 +5,7 @@
 }
 
 .home-slider-container img {
-  width: 100%; /* Make the image fill the entire width of its container */
-  height: 100%; /* Make the image fill the entire height of its container */
-  object-fit: cover; /* Maintain aspect ratio and cover the entire container */
+  width: 50%; /* Make the image fill the entire width of its container */
+  height: 50%; /* Make the image fill the entire height of its container */
+  object-fit:fill; /* Maintain aspect ratio and cover the entire container */
 }

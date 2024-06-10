@@ -168,7 +168,7 @@ function Header(props) {
                                         }
                                     />
                                     <NavItem
-                                        to="/blog"
+                                        to="/Blogpage"
                                         label="Blog"
                                         activeNavItem={activeNavItem}
                                         handleNavItemChange={
@@ -192,7 +192,7 @@ function Header(props) {
                                         }
                                     />
                                     <NavItem
-                                        to="/contact"
+                                        to="/ContactForm"
                                         label="Contact"
                                         activeNavItem={activeNavItem}
                                         handleNavItemChange={

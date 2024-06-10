@@ -1,135 +1,89 @@
-/* Logo */
-.logo {
-  width: 50px; /* Adjust the width as needed */
-  height: auto; /* Maintain aspect ratio */
-  margin-right: 20px; /* Reduce right margin to move the logo left */
-  margin-left: 600px; /* Set left margin to ensure it starts from the left edge */
-  display: flex;
-  align-items: center; /* Align the logo vertically */
+/* General styling */
+.header {
+  background: #007bff; /* Primary color */
+  padding: 8px 0;
+  color: white;
 }
 
-/* Navigation */
-.navigation {
-  display: flex;
-  font-size: 15px; /* Updated font size */
-  justify-content: flex-start; /* Align navigation bars to the left */
-  margin-left: 600px; /* Adjust the margin as needed */
-  width: 100%;
+.header .office-hour {
+  font-size: 14px;
+  color: #f0f0f0;
 }
 
-/* Navigation */
-nav {
+.header .header-right {
   display: flex;
-  font-size: 7px; /* Updated font size */
   align-items: center;
-  justify-content: center;
-  margin-top: 2px;
-  padding-top: 0;
-  margin-right: 0px;
-  margin-left: 0px;
-}
-
-/* Home */
-.home {
-  padding: 0;
-}
-
-/* Right Column */
-.right-column {
-  display: flex;
   justify-content: flex-end;
-  align-items: center;
-  margin: 0 auto; /* Center horizontally */
 }
 
-/* Link Button */
-.Link-btn {
-  margin: 0px;
-  padding: 5px 10px; /* Adjust padding for button size */
-  font-size: 15px;
+.header .user-panel {
+  margin-left: 15px;
 }
 
-/* Phone Number */
-.phone-number {
-  font-size: small;
+.header .phone-number {
+  font-size: 14px;
+  color: white;
 }
 
-/* Button Style */
-.btn-style-one {
-  background-color: black;
+.menu-toggle {
+  display: inline-block;
+  cursor: pointer;
+  padding: 5px;
+  margin-left: 8px;
 }
 
-/* Burger Menu */
-.burger-menu {
-  display: none; /* Initially hide the burger menu */
+.menu-toggle.active .hamburger-bar,
+.menu-toggle.active .hamburger-bar::before,
+.menu-toggle.active .hamburger-bar::after {
+  background: #6c6b61; /* Highlight color */
+}
+.menu-toggle .hamburger-bar,
+.menu-toggle .hamburger-bar::before,
+.menu-toggle .hamburger-bar::after {
+  display: block;
+  width: 20px;
+  height: 1px;
+  background: white;
+  margin: 2px auto;
+  transition: all 0.3s ease;
 }
 
-/* Dropdown Navigation for Mobile Devices */
-@media (max-width: 768px) {
-  /* Hide the regular navigation */
-  .navigation {
-    display: none;
-  }
+.menu-toggle .hamburger-bar::before,
+.menu-toggle .hamburger-bar::after {
+  content: '';
+  position: absolute;
+}
 
-  /* Display the burger menu */
-  .burger-menu {
-    display: block;
-    /* Add styling for the burger menu icon */
-    cursor: pointer;
-    width: 30px;
-    height: 30px;
-    background-color: #fff;
-    border: 1px solid #000;
-    position: relative;
-  }
+.menu-toggle .hamburger-bar::before {
+  top: -5px;
+}
 
-  .burger-menu .line {
-    width: 100%;
-    height: 3px;
-    background-color: #000;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-  }
+.menu-toggle .hamburger-bar::after {
+  bottom: -10px;
+}
 
-  .burger-menu .line:first-child {
-    top: 25%;
-  }
+/* Navbar styling */
+.main-menu {
+  background: #0056b3; /* Darker primary color */
+}
 
-  .burger-menu .line:last-child {
-    top: 75%;
-  }
+.navbar-nav .nav-item .nav-link {
+  color: white;
+  padding: 8px 10px;
+}
 
-  .burger-menu.active .line:first-child {
-    transform: rotate(45deg) translate(6px, 6px);
-  }
+.navbar-nav .nav-item .nav-link.active,
+.navbar-nav .nav-item .nav-link:hover {
+  background: #ffeb3b; /* Highlight color */
+  color: #007bff; /* Primary color */
+  border-radius: 1px;
+}
 
-  .burger-menu.active .line:last-child {
-    transform: rotate(-45deg) translate(6px, -6px);
-  }
-
-  .burger-menu.active .line:nth-child(2) {
-    opacity: 0;
-  }
-
-  /* Show dropdown menu */
-  nav.active .navigation {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background-color: #fff;
-    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-    z-index: 1;
-    width: 100%;
-  }
-
-  /* Adjust styles for individual navigation items */
-  nav.active .navigation .Link-btn {
-    padding: 10px;
-    text-align: center;
-    border-bottom: 1px solid #ccc;
-    width: 100%;
-  }
+/* Active indicator styling */
+.active-indicator {
+  position: absolute;
+  bottom: 0;
+  height: 4px;
+  background: #ffeb3b; /* Highlight color */
+  transition: all 0.3s ease;
 }
